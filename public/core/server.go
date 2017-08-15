@@ -39,7 +39,7 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	io.WriteString(rw, fmt.Sprintf(`
 	<!Doctype html>
 	<html>
-	<head>
+	<head>http://www.zhimaruanjian.com
 	<meta charset="utf-8" />
 	<title>%s</title>
 	</head>
@@ -84,9 +84,9 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	</form>
 	</div>
 	</div>
-	<div style="float:right;width:20%;margin:30px">
+	<div style="float:right;width:20%%;margin:30px">
 	<h1>This page you should caution!</h1>
-	<img style="max-width: 100%;" src="http://www.cjhug.me/static/me.gif" />
+	<img style="max-width: 100%%;" src="http://www.cjhug.me/static/me.gif" />
 	</div>
 	</body>
 	</html>

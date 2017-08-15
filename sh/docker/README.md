@@ -1,35 +1,37 @@
 # GoSpider-docker
 
-# Ò». ½éÉÜ
+# ä¸€. ä»‹ç»
 
-ÔÚ¿ª·¢ÅÀ³æÊ±£¬ÎÒÃÇÒª°²×°ºÃredis£¬·½±ã×ö·Ö²¼Ê½ÅÀ³æ£¬×°MYSQL£¬ºÃ·½±ã´æÊı¾İ
+åœ¨å¼€å‘çˆ¬è™«æ—¶ï¼Œæˆ‘ä»¬è¦å®‰è£…å¥½redisï¼Œæ–¹ä¾¿åšåˆ†å¸ƒå¼çˆ¬è™«ï¼Œè£…MYSQLï¼Œå¥½æ–¹ä¾¿å­˜æ•°æ®
 
-ËùÒÔ×öÁËÕâ¸ö¿â£¬ÏÖÔÚÊÇÈİÆ÷»¯µÄÊ±´ú£¬±¾ÈËÒ²´ÓÊÂÔÆ¼ÆËã£¬ËùÒÔÓÃdockerÀ´¿ìËÙ²¿Êğ»·¾³¡£
+æ‰€ä»¥åšäº†è¿™ä¸ªåº“ï¼Œç°åœ¨æ˜¯å®¹å™¨åŒ–çš„æ—¶ä»£ï¼Œæœ¬äººä¹Ÿä»äº‹äº‘è®¡ç®—ï¼Œæ‰€ä»¥ç”¨dockeræ¥å¿«é€Ÿéƒ¨ç½²ç¯å¢ƒã€‚
 
-Õâ¸ö¿âÄ¿Ç°²¿ÊğµÄ»·¾³ÓĞ`redis`,`mysql`,`golang`¡£
+è¿™ä¸ªåº“ç›®å‰éƒ¨ç½²çš„ç¯å¢ƒæœ‰`redis`,`mysql`,`golang`ã€‚`golang`å»é™¤ï¼Œæˆ‘å»ºè®®å®‰è£…åœ¨æœ¬åœ°ã€‚
 
-ÄãÏÈÒªÓĞÒ»Ì¨Linux²Ù×÷ÏµÍ³µÄ¼ÆËã»ú£¬ÎÒ½¨Òé°²×°`ubuntu16.04`¡£
+ä½ å…ˆè¦æœ‰ä¸€å°Linuxæ“ä½œç³»ç»Ÿçš„è®¡ç®—æœºï¼Œæˆ‘å»ºè®®å®‰è£…`ubuntu16.04`ã€‚
 
-È»ºó°²×°ºÃ`git`£¬`docker`ºÍ`docker-compose`
+ç„¶åå®‰è£…å¥½`git`ï¼Œ`docker`å’Œ`docker-compose`
 
-Çë²Î¿¼£º
+è¯·å‚è€ƒï¼š
 
-Dokcer°²×°£º[http://www.lenggirl.com/tool/docker-ubuntu-install.html](http://www.lenggirl.com/tool/docker-ubuntu-install.html)
+Dokcerå®‰è£…ï¼š[http://www.lenggirl.com/tool/docker-ubuntu-install.html](http://www.lenggirl.com/tool/docker-ubuntu-install.html)
 
-¹úÄÚµÄÍÆ¼öÕâÑù°²×°£º[http://www.lenggirl.com/tool/docker-install.html](http://www.lenggirl.com/tool/docker-install.html)
+å›½å†…çš„æ¨èè¿™æ ·å®‰è£…ï¼š[http://www.lenggirl.com/tool/docker-install.html](http://www.lenggirl.com/tool/docker-install.html)
 
-Docker-compose°²×°£º[http://www.lenggirl.com/tool/docker-compose.html](http://www.lenggirl.com/tool/docker-compose.html)
+Docker-composeå®‰è£…ï¼š[http://www.lenggirl.com/tool/docker-compose.html](http://www.lenggirl.com/tool/docker-compose.html)
 
-ÎÒÒÑ¾­Ğ´ºÃ½Å±¾£¬ÇëÖ±½ÓÔËĞĞ
+æˆ‘å·²ç»å†™å¥½è„šæœ¬å®‰è£…dockeräº†ï¼Œè¯·ç›´æ¥è¿è¡Œ
 
 ```
 chmod 777 docker-install.sh
 ./docker-install.sh
 ```
 
-# ¶ş. Ê¹ÓÃ
+æˆ‘è¿˜æ˜¯å»ºè®®ä½ å¯ä»¥ç™¾åº¦ä¸€ä¸‹ã€‚
 
-ÇëÏÈÏÂÔØ¸Ã¿â
+# äºŒ. ä½¿ç”¨
+
+è¯·å…ˆä¸‹è½½è¯¥åº“
 
 
 ```
@@ -37,104 +39,87 @@ git clone https://github.com/hunterhug/GoSpider-docker
 ```
 
 
-È»ºó¸³Óè`build.sh`Ö´ĞĞÈ¨ÏŞ
+ç„¶åèµ‹äºˆ`build.sh`æ‰§è¡Œæƒé™
 
 ```
 chomd 777 build.sh
 ./build
 ```
 
-Æô¶¯ºó¼´¿É´ÓÍâ²¿Ê¹ÓÃ¡£
+å¯åŠ¨åå³å¯ä»å¤–éƒ¨ä½¿ç”¨ã€‚
 
-mysqlÍâ²¿¶Ë¿Ú8003£¬ÕËºÅÃÜÂë:root/123456
+mysqlå¤–éƒ¨ç«¯å£8003ï¼Œè´¦å·å¯†ç :root/459527502
 
-redisÍâ²¿¶Ë¿Ú8002£¬ÃÜÂë:GoSpider
+rediså¤–éƒ¨ç«¯å£8002ï¼Œå¯†ç :GoSpider
 
-ÒòÎªÈİÆ÷¹Ò¾í£¬ÔÚÄÚ²¿»òÍâ²¿ĞŞ¸Ä´úÂë£¬¶¼»áÍ¬²½
+å› ä¸ºå®¹å™¨æŒ‚å·ï¼Œåœ¨å†…éƒ¨æˆ–å¤–éƒ¨ä¿®æ”¹ä»£ç ï¼Œéƒ½ä¼šåŒæ­¥
 
-Èç¹û±¾»úÃ»ÓĞ°²×°`mysql`ºÍ`redis`¿Í»§¶Ë£¬¿ÉÖ´ĞĞ
+å¦‚æœæœ¬æœºæ²¡æœ‰å®‰è£…`mysql`å’Œ`redis`å®¢æˆ·ç«¯ï¼Œå¯æ‰§è¡Œ
 
 ```
 docker exec -it GoSpider-redis redis-cli -a GoSpider
-docker exec -it  GoSpider-mysqldb mysql -uroot -p123456
+docker exec -it  GoSpider-mysqldb mysql -uroot -p459527502
 
 mysql> show variables like '%max_connect%';
 ```
 
-½øÈëgolang»·¾³ÃüÁîÒÑ¾­ÔÚ`build.sh`ÖĞÉèÖÃºÃ
+è¿›å…¥golangï¼Œæˆ‘å»ºè®®æœ¬åœ°å®‰è£…ï¼Œæˆ–è€…ä½ å¯ä»¥é€šè¿‡dockerè¿™æ ·å®‰è£…ï¼š
 
-ÃüÁîÈçÏÂ:
+å‘½ä»¤å¦‚ä¸‹:
 
 ```
 docker pull golang:1.8
 docker run --rm --net=host -it -v $HOME/mydocker/go:/go --name mygolang golang:1.8 /bin/bash
 ```
 
-# Èı. Ô­Àí
-`build.sh`ÄÚÈİÈçÏÂ£º
+# ä¸‰. åŸç†
+`build.sh`å†…å®¹å¦‚ä¸‹ï¼š
 
 ```
 #!/bin/bash
-mkdir -p $HOME/mydocker/redis/data
-mkdir -p $HOME/mydocker/redis/conf
-mkdir -p $HOME/mydocker/mysql/data
-mkdir -p $HOME/mydocker/mysql/conf
-mkdir -p $HOME/mydocker/go
-cp my.cnf $HOME/mydocker/redis/conf
-cp redis.conf $HOME/mydocker/mysql/conf
-docker-compose up -d
-docker pull golang:1.8
-docker run --rm --net=host -it -v $HOME/mydocker/go:/go --name mygolang golang:1.8 /bin/bash
+#sudo rm -rf $HOME/mydocker
+sudo mkdir -p $HOME/mydocker/redis/data
+sudo mkdir -p $HOME/mydocker/redis/conf
+sudo mkdir -p $HOME/mydocker/mysql/data
+sudo mkdir -p $HOME/mydocker/mysql/conf
+sudo mkdir -p $HOME/mydocker/go
+sudo cp my.cnf $HOME/mydocker/mysql/conf/my.cnf
+sudo cp redis.conf $HOME/mydocker/redis/conf/redis.conf
+sudo docker-compose stop
+sudo docker-compose rm -f
+sudo docker-compose up -d
 ```
 
-Ô­ÀíÊÇÏÈ½«`mysql`ºÍredis`µÄÅäÖÃÎÄ¼şÒÆ¶¯µ½¸ùÄ¿Â¼ÏÂµÄÄ³¸öµØ·½£¬ÔÙ¹ÒÔØ½øÈİÆ÷£¬Êı¾İ¿âÊı¾İ»á±£´æÔÚ±¾µØ£¬¼´Ê¹ÈİÆ÷ËÀµôÒ²¿ÉÖØÆô²»¶ª¡£
+åŸç†æ˜¯å…ˆå°†`mysql`å’Œredis`çš„é…ç½®æ–‡ä»¶ç§»åŠ¨åˆ°æ ¹ç›®å½•ä¸‹çš„æŸä¸ªåœ°æ–¹ï¼Œå†æŒ‚è½½è¿›å®¹å™¨ï¼Œæ•°æ®åº“æ•°æ®ä¼šä¿å­˜åœ¨æœ¬åœ°ï¼Œå³ä½¿å®¹å™¨æ­»æ‰ä¹Ÿå¯é‡å¯ä¸ä¸¢ã€‚
 
-ÅäÖÃÎÄ¼şÖĞ`mysql`Á¬½ÓÊıÒÑ¾­ÉèÖÃ¸ß£¬`redis`ÉèÖÃÁËÃÜÂë:`requirepass GoSpider`
+é…ç½®æ–‡ä»¶ä¸­`mysql`è¿æ¥æ•°å·²ç»è®¾ç½®é«˜ï¼Œ`redis`è®¾ç½®äº†å¯†ç :`requirepass GoSpider`
 
 
-`docker-compose.yaml`ÄÚÈİÈçÏÂ£º
+`docker-compose.yaml`å†…å®¹å¦‚ä¸‹ï¼š
 
 ```
 version: '2'
 services:
     redis: 
+      container_name: "GoSpider-redis"
       image: redis:3.2
       ports: 
-        - "8002:6379"
+        - "6379:6379"
       volumes:
         - $HOME/mydocker/redis/data:/data
-        - $HOME/mydocker/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+        - $HOME/mydocker/redis/conf:/usr/local/etc/redis
+      command: redis-server /usr/local/etc/redis/redis.conf
     mysqldb: 
-      image: mysql
+      container_name: "GoSpider-mysqldb"
+      image: mysql:5.7
       ports: 
-        - "8003:3306"
+        - "3306:3306"
       environment: 
-        - MYSQL_ROOT_PASSWORD=123456
+        - MYSQL_ROOT_PASSWORD=459527502
       volumes:
         - $HOME/mydocker/mysql/data:/var/lib/mysql
         - $HOME/mydocker/mysql/conf:/etc/mysql/conf.d
-		
-		
-		ÒÔÏÂÉ¾³ı£¬Ì«Âı£¬Çë×ÔĞĞ½øgo»·¾³go get
-	##############################################
-    golang1.8:
-      build: ./golang1.8
-      net: "host"
-      links: 
-        - redis
-        - mysqldb
-      volumes:
-        - $HOME/mydocker/go:/go
-	############################################
 ```
 
-¿ÉÊÊµ±¸Ä¶Ë¿Ú
-
-
-# µ¥Ò»¾µÏñ
-
-Web¶Ë½øÈë£¬Ò»¸öÇ¿´óµÄ¾µÏñ£¬×Ô´øredis,mysql,golang,golang IDE 
-
-[https://github.com/hunterhug/docker-ubuntu-vnc-desktop](https://github.com/hunterhug/docker-ubuntu-vnc-desktop)
-
+å¯é€‚å½“æ”¹ç«¯å£
 
