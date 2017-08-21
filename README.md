@@ -28,7 +28,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ### 2. 中文介绍
 
-讨论欢迎加入[技术圈](segmentfault.com/g/1570000010693834)
+讨论欢迎加入[技术圈](http://segmentfault.com/g/1570000010693834)讨论。
 
 用途： 选款，特别适合亚马逊电子商务运营公司
 
