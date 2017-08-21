@@ -28,15 +28,17 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ### 2. 中文介绍
 
+讨论欢迎加入[技术圈](segmentfault.com/g/1570000010693834)
+
 用途： 选款
 
 核心竞争力： 四个国际站点：美国/英国/日本/德国，分布式，配套后台可视化
 
-因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，彻底开源.
+原理： 首先通过获取亚马逊所有类目的URL，即从第一层大类，一直获取到第六层小类。通过这些类目URL可以依次抓取到这些类目某段时间的Top100的商品（类目下的爆款），这些Top100的商品排名我们称为小类排名，每个小时会变一次，但是由于变化基本不会太频繁以及抓取的商品数量很多，基本能覆盖。比如：有一个大类，下面有一个三层类目，这个三层类目下面有几十个四层，四层下面又有五层，很多个Top100组在一起构成了三层我们需要的商品。通过这些小类商品数据，我们再进详情页获取更多的字段，包括每件商品的最顶层排名，我们称大类排名。通过去重，分布式代理接力以及数据的一些预处理，我们能得到亚马逊大部分卖得好的商品，通过筛选，排序，我们可以从不同角度观察商品趋势。对于卖家来选款的话是极好的。
 
-核心的爬虫包已经拆分成库了，见[ Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库 ](https://github.com/hunterhug/GoSpider)。
+关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。我没操作过亚马逊的产品发布，听运营总监说，不同的商家会有一样ASIN的商品，如果谁的商品好（省略。。怕误解他人）
 
-这是BI爬虫端,BI网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，彻底开源.核心的爬虫包已经拆分成库了，见[ Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库 ](https://github.com/hunterhug/GoSpider)。这是BI爬虫端,BI网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
 英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心，老中文说明见[中文版说明](chinese.md)
 
