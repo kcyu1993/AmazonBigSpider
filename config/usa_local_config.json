@@ -1,6 +1,6 @@
 {
   "Type": "USA",
-  "Datadir": "/data/db/usa",
+  "Datadir": "/cvlabdata3/kyu/amazonspider/data/db/usa",
   "Proxymaxtrytimes": 8,
   "Rank": 100000,
   "Listtasknum": 30,
@@ -38,14 +38,14 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "459527502",
+    "Password": "happyhacking",
     "Dbname": "smart_base"
   },
   "Hashdb": {
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "459527502",
+    "Password": "happyhacking",
     "Dbname": "smart_hash"
   },
   "Hashnum": 80,
@@ -53,7 +53,7 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "459527502",
+    "Password": "happyhacking",
     "Dbname": "smartdb"
   },
   "Ipuse": {

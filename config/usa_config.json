@@ -1,6 +1,6 @@
 {
   "Type": "USA",
-  "Datadir": "/data/db/usa",
+  "Datadir": "/cvlabdata3/kyu/amazonspider/data/db/usa",
   "Proxymaxtrytimes": 10,
   "Rank": 80000,
   "Listtasknum": 30,
