@@ -179,11 +179,16 @@ netstat -ntpl
 
 # 启动网站端
 cd /root/gocode/src/github.com/hunterhug/AmazonBigSpiderWeb
+go build
+./AmazonBigSpiderWeb
+nohup ./AmazonBigSpiderWeb &
+
+打开浏览器输入: /IP:8080
 
 # 第二天起就自动了
 
-# 接着: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
-# 需要先进数据库删除数据
+# 接着特殊的: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
+# 需要先进数据库删除数据, 请逐行操作
 docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
 >>>
 use uk_smart_base
@@ -197,6 +202,11 @@ TRUNCATE  table smart_category;
 >>
 
 cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/tool/url/
+curl "http://127.0.0.1:12345/mi?orderid=imatie@qq.com&user=jinhan&password=459527502"
+curl "http://127.0.0.1:12346/mi?orderid=imatie@qq.com&user=jinhan&password=459527502"
+curl "http://127.0.0.1:12347/mi?orderid=imatie@qq.com&user=jinhan&password=459527502"
+curl "http://127.0.0.1:12348/mi?orderid=imatie@qq.com&user=jinhan&password=459527502"
+
 go run usa_urlmain.go -toolproxy=false -toolstep=0
 go run usa_urlmain.go -toolproxy=true -toolstep=1
 go run usa_urlmain.go -toolproxy=true -toolstep=2
