@@ -33,6 +33,14 @@ ssh root@IP
 apt update
 apt install git
 
+# 更新hosts, 复制主机名到hosts
+cat /etc/hostname
+vim /etc/hosts
+
+>>>
+0.0.0.0 iZwz9j36enzsqt8ab9tvkxZ
+>>>
+
 # 拉代码
 mkdir -p ~/gocode/src/github.com/hunterhug
 cd ~/gocode/src/github.com/hunterhug
@@ -44,8 +52,7 @@ apt install docker.io
 apt install docker-compose
 
 # 启动MYSQL和Redis
-cd AmazonBigSpider
-cd sh/docker
+cd AmazonBigSpider/sh/docker
 chmod 777 ./build.sh
 ./build
 
@@ -56,6 +63,8 @@ redis> keys *  (Ctrl+C)
 
 docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
 mysql> show databases;
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'  IDENTIFIED BY '459527502'  WITH GRANT OPTION;
+       flush privileges;
 mysql> exit
 
 # scp go1.8压缩包到远程机器
@@ -90,21 +99,129 @@ docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
 mysql> show databases;
 mysql> exit
 
-# 初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
-cd gocode/src/github.com/hunterhug/AmazonBigSpider/tool/url/
+
+# 方式一: 初始化数据库: 使用我抓取好的类目URL, 方式二见最后
+cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/doc/sql
+cp * $HOME/mydocker/mysql/conf/
+docker exec -it  GoSpider-mysqldb mysql -uroot -p459527502
+
+source /etc/mysql/conf.d/jp_category.sql
+source /etc/mysql/conf.d/de_category.sql
+source /etc/mysql/conf.d/usa_category.sql
+source /etc/mysql/conf.d/uk_category.sql
+
+
+# 设置定时器(cdddddddddd@qq.com请换为自己的用户名: 参见:https://proxy.mimvp.com)
+crontab -e
+
+>>>>
+5 0 * * * ps -ef|grep usa/U* | awk '{print $2}' |xargs -i kill {}
+20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+10 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+15 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+20 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+0 3 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+5 0 * * * ps -ef|grep jp/U* | awk '{print $2}' |xargs -i kill {}
+20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+10 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+15 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+20 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+0 3 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+5 0 * * * ps -ef|grep uk/U* | awk '{print $2}' |xargs -i kill {}
+20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+10 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+15 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+20 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+0 3 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+5 0 * * * ps -ef|grep de/U* | awk '{print $2}' |xargs -i kill {}
+20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+10 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+15 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+20 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+0 3 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+*/1 * * * * curl http://127.0.0.1:12345/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
+*/1 * * * * curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
+*/1 * * * * curl http://127.0.0.1:12347/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
+*/1 * * * * curl http://127.0.0.1:12348/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
+
+:wq
+>>>>
+
+# 进行测试, 请逐条运行, 真的...
+
+ps -ef|grep usa/U* | awk '{print $2}' |xargs -i kill {}
+docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+ps -ef|grep jp/U* | awk '{print $2}' |xargs -i kill {}
+docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+ps -ef|grep uk/U* | awk '{print $2}' |xargs -i kill {}
+docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+ps -ef|grep de/U* | awk '{print $2}' |xargs -i kill {}
+docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider > /dev/null 2>&1 &
+
+# 看到有12345-12348的端口即可
+netstat -ntpl
+
+# 启动网站端
+cd /root/gocode/src/github.com/hunterhug/AmazonBigSpiderWeb
+
+# 第二天起就自动了
+
+# 接着: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
+# 需要先进数据库删除数据
+docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
+>>>
+use uk_smart_base
+TRUNCATE  table smart_category
+use de_smart_base
+TRUNCATE  table smart_category
+use jp_smart_base
+TRUNCATE  table smart_category
+use smart_base
+TRUNCATE  table smart_category;
+>>
+
+cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/tool/url/
 go run usa_urlmain.go -toolproxy=false -toolstep=0
 go run usa_urlmain.go -toolproxy=true -toolstep=1
 go run usa_urlmain.go -toolproxy=true -toolstep=2
 go run usa_urlmain.go -toolproxy=true -toolstep=3
 go run usa_urlmain.go -toolproxy=true -toolstep=4
+go run usa_urlparse.go
 
-# 初始化数据库: 使用我抓取好的类目URL
-docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
+go run jp_urlmain.go -toolproxy=false -toolstep=0
+go run jp_urlmain.go -toolproxy=true -toolstep=1
+go run jp_urlmain.go -toolproxy=true -toolstep=2
+go run jp_urlmain.go -toolproxy=true -toolstep=3
+go run jp_urlmain.go -toolproxy=true -toolstep=4
+go run jp_urlparse.go
 
-source jp_category.sql
-source de_category.sql
-source usa_category.sql
-source uk_category.sql
+go run uk_urlmain.go -toolproxy=false -toolstep=0
+go run uk_urlmain.go -toolproxy=true -toolstep=1
+go run uk_urlmain.go -toolproxy=true -toolstep=2
+go run uk_urlmain.go -toolproxy=true -toolstep=3
+go run uk_urlmain.go -toolproxy=true -toolstep=4
+go run uk_urlparse.go
 
-
+go run de_urlmain.go -toolproxy=false -toolstep=0
+go run de_urlmain.go -toolproxy=true -toolstep=1
+go run de_urlmain.go -toolproxy=true -toolstep=2
+go run de_urlmain.go -toolproxy=true -toolstep=3
+go run de_urlmain.go -toolproxy=true -toolstep=4
+go run de_urlparse.go
 ```
