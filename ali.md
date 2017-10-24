@@ -207,6 +207,8 @@ curl "http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=
 curl "http://127.0.0.1:12347/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
 curl "http://127.0.0.1:12348/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
 
+
+# 如果出现很多错误,那你的代理不行, 请将toolproxy设置为false
 go run usa_urlmain.go -toolproxy=false -toolstep=0
 go run usa_urlmain.go -toolproxy=true -toolstep=1
 go run usa_urlmain.go -toolproxy=true -toolstep=2

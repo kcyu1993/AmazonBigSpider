@@ -1,6 +1,6 @@
 {
-  "Version": "1.0.0",
-  "Update": "2017.9.30 Beijing",
+  "Version": "2.0",
+  "Update": "2017.10.24 Beijing",
   "Description": "AmazonBigSpider write by golang",
   "Repo": "https://github.com/hunterhug/AmazonBigSpider",
   "Author": "hunterhug",

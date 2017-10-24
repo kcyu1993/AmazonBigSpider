@@ -6,6 +6,11 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
+v2.0
+
+1. 增加安装详细说明
+2. 修补一些BUG
+
 ## 一. 介绍
 
 ### 1. 英语介绍
@@ -112,7 +117,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ## 三. 如何使用
 
-记录一次实例安装: 见[阿里云安装该产品](/ali.md), 请仔细阅读!!!
+记录一次实例安装: 见[阿里云安装该产品](/ali.md), 请仔细阅读!!! <------------ 真的是实战安装!!
 
 ### 1. 获取代码/安装环境
 
@@ -374,7 +379,7 @@ source uk_category.sql
 # 需要root用户执行
 cd tool/url
 
-# 以下分别是第一/二层,三层,四层,五层,六层类目URL的抓取, toolproxy表示代理, 如果被机器人,请使用代理
+# 以下分别是第一/二层,三层,四层,五层,六层类目URL的抓取, toolproxy表示代理, 如果被机器人,请使用代理(建议不使用, 如果出现机器人再使用)
 go run usa_urlmain.go -toolproxy=false -toolstep=0
 go run usa_urlmain.go -toolproxy=true -toolstep=1
 go run usa_urlmain.go -toolproxy=true -toolstep=2
@@ -541,7 +546,7 @@ BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍
 
 # 五. 心路历程
 
-开发这个产品从2016年10月就开始了(12月底试用期离职)，不再投入精力开发(2017年10月记录). 
+开发这个产品从2016年10月就开始了, 目前迭代从2.0开始.
 
 核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/GoSpider)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://www.github.com/hunterhug/GoWeb)
 
