@@ -180,7 +180,7 @@ netstat -ntpl
 # 启动网站端
 cd /root/gocode/src/github.com/hunterhug/AmazonBigSpiderWeb
 go build
-./AmazonBigSpiderWeb
+./AmazonBigSpiderWeb -s
 nohup ./AmazonBigSpiderWeb &
 
 打开浏览器输入: /IP:8080
