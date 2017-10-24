@@ -449,9 +449,15 @@ func BigReallyName(name string) string {
 		bigname = "Industrial & Scientific"
 	case strings.ToLower("ClothingShoesJewelry"):
 		bigname = "Clothing"
+
+	default:
+		if strings.Contains(dudu, "kitchen") {
+			bigname = "Home & Kitchen"
+		}
 	}
 	return bigname
 }
+
 /*
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际
