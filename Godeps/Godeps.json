@@ -4,7 +4,27 @@
 	"GodepVersion": "v79",
 	"Deps": [
 		{
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.2-194-g7ebe0a5",
+			"Rev": "7ebe0a500653eeb1859664bed5e48dec1e164e73"
+		},
+		{
 			"ImportPath": "github.com/hunterhug/GoSpider/spider",
+			"Comment": "1.0.0-5-ga5f8965",
+			"Rev": "a5f8965a6ccfc88083249885cea2076e2c70c9a6"
+		},
+		{
+			"ImportPath": "github.com/hunterhug/GoSpider/store",
+			"Comment": "1.0.0-5-ga5f8965",
+			"Rev": "a5f8965a6ccfc88083249885cea2076e2c70c9a6"
+		},
+		{
+			"ImportPath": "github.com/hunterhug/GoSpider/store/myredis",
+			"Comment": "1.0.0-5-ga5f8965",
+			"Rev": "a5f8965a6ccfc88083249885cea2076e2c70c9a6"
+		},
+		{
+			"ImportPath": "github.com/hunterhug/GoSpider/store/mysql",
 			"Comment": "1.0.0-5-ga5f8965",
 			"Rev": "a5f8965a6ccfc88083249885cea2076e2c70c9a6"
 		},
@@ -17,6 +37,45 @@
 			"ImportPath": "github.com/op/go-logging",
 			"Comment": "v1-7-g970db52",
 			"Rev": "970db520ece77730c7e4724c61121037378659d9"
+		},
+		{
+			"ImportPath": "gopkg.in/bsm/ratelimit.v1",
+			"Rev": "db14e161995a5177acef654cb0dd785e8ee8bc22"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal/consistenthash",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal/errors",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal/hashtag",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal/pool",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
+		},
+		{
+			"ImportPath": "gopkg.in/redis.v4/internal/proto",
+			"Comment": "v4.2.4",
+			"Rev": "c938162545c57136fa59879746bc65d0f1db3d1e"
 		}
 	]
 }

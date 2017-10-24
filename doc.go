@@ -22,6 +22,11 @@ import (
 	"github.com/hunterhug/GoSpider/util"
 	//"net"
 	"github.com/hunterhug/GoSpider/spider"
+
+	// 为了依赖
+	_ "github.com/hunterhug/GoSpider/store/myredis"
+	_ "github.com/hunterhug/GoSpider/store/mysql"
+
 	"os"
 	"path/filepath"
 	"strings"

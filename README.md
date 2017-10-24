@@ -112,7 +112,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ## 三. 如何使用
 
-记录一次实例安装: 见[阿里云安装该产品](/ali.md)
+记录一次实例安装: 见[阿里云安装该产品](/ali.md), 请仔细阅读!!!
 
 ### 1. 获取代码/安装环境
 
