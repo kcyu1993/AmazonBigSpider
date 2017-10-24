@@ -463,6 +463,8 @@ curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=4
 其中`orderid=cdddddddddd@qq.com` = 后面的是你购买后给你的帐号，其他不变。我建议你还是购买其他的代理IP，毕竟这个产品如果很多人在用，会有IP冲突（某个人如果太暴力，分布式开太多，应该会），就是
 IP已经被人用了，然后你再用就无效了。
 
+自建代理请见[多IP多网关Squid架设Http服务器](http://www.lenggirl.com/tool/overwall.html#http)
+
 ### 7. 分布式部署(可选)
 
 分布式部署时，由于数据量巨大，开启网站端时，容易卡，所以你可以对数据库进行读写分离，一般数据量 `不大` 可以不用。
