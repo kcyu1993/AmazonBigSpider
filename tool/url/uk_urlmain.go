@@ -37,6 +37,7 @@ func main() {
 	} else {
 		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"uk_config.json", AmazonBigSpider.Dir+"/config/"+"uk_log.json")
 	}
+	proxy = AmazonBigSpider.ToolProxy
 	//6级别
 	//26-28-14-4-10-0,https://www.amazon.co.jp/gp/bestsellers/books/3525971,ヴェルディ
 	util.MakeDir(core.MyConfig.Datadir + "/url/0")
@@ -46,10 +47,12 @@ func main() {
 	util.MakeDir(core.MyConfig.Datadir + "/url/4")
 	listlevel1 := index() //1
 	level0(listlevel1)    //2
-	//Good(1) //3
-	//Good(2)     //4
-	//Good(3) //5
-	//Good(4) //6
+	switch AmazonBigSpider.ToolStep {
+	case 1, 2, 3, 4:
+		Good(AmazonBigSpider.ToolStep)
+	default:
+		fmt.Println("End")
+	}
 }
 
 // so ! what !

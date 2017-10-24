@@ -19,21 +19,21 @@ package core
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/log"
 	"github.com/hunterhug/GoSpider/spider"
 	"github.com/hunterhug/GoSpider/store/myredis"
 	"github.com/hunterhug/GoSpider/store/mysql"
 	"github.com/hunterhug/GoSpider/util"
 	"strings"
-	"github.com/hunterhug/AmazonBigSpider"
 )
 
 var (
 	Dir                                       string           = AmazonBigSpider.CoreDir // now root dir core
-	DataDir                                   string                           //global data dir, diff from Myconfig
-	RedisClient                               *myredis.MyRedis                 // redis
-	BasicDb                                   *mysql.Mysql                     // url db
-	DataDb                                    *mysql.Mysql                     // data db
+	DataDir                                   string                                     //global data dir, diff from Myconfig
+	RedisClient                               *myredis.MyRedis                           // redis
+	BasicDb                                   *mysql.Mysql                               // url db
+	DataDb                                    *mysql.Mysql                               // data db
 	HashDb                                    *mysql.Mysql
 	MyConfig                                  Config // some config.json
 	AmazonListLog, AmazonAsinLog, AmazonIpLog *log.Logger
@@ -155,7 +155,10 @@ func InitConfig(cfpath string, logpath string) {
 
 	MapUrl(SpiderType)
 	// create dir so that no error
-	util.MakeDir(MyConfig.Datadir + "/list/" + Today)
+	er := util.MakeDir(MyConfig.Datadir + "/list/" + Today)
+	if er != nil {
+		panic(er.Error())
+	}
 	util.MakeDir(MyConfig.Datadir + "/asin/" + Today)
 
 	// spider log init and timeout
@@ -166,7 +169,9 @@ func InitConfig(cfpath string, logpath string) {
 	redisconfig := MyConfig.Redisconfig
 	redisclient, err := myredis.NewRedisPool(redisconfig, MyConfig.Redispoolsize)
 	if err != nil {
-		panic("REDIS ERROR" + err.Error())
+		// here not pamoc
+		//panic("REDIS ERROR" + err.Error())
+		fmt.Println("Redis error" + err.Error())
 	}
 	RedisClient = redisclient
 
@@ -229,6 +234,7 @@ func NewLog(filename string) {
 	AmazonAsinLog = log.Get("dayasin")
 	AmazonIpLog = log.Get("dayip")
 }
+
 /*
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际

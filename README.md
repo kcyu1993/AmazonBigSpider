@@ -32,13 +32,13 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ### 2. 中文介绍
 
-用途： 选款，特别适合亚马逊电子商务运营公司
+用途： 选款，特别适合亚马逊跨境电子商务运营公司(不支持中国亚马逊)
 
-核心竞争力： 四个国际站点：美国/英国/日本/德国，分布式，配套后台可视化
+核心竞争力： 四个国际站点：`美国/英国/日本/德国`，分布式，配套后台可视化
 
 原理： 首先通过获取亚马逊所有类目的URL，即从第一层大类，一直获取到第六层小类。通过这些类目URL可以依次抓取到这些类目某段时间的Top100的商品（类目下的爆款），这些Top100的商品排名我们称为小类排名，每个小时会变一次，但是由于变化基本不会太频繁以及抓取的商品数量很多，基本能覆盖。比如：有一个大类，下面有某一个三层类目，这个三层类目下面有几十个四层，四层下面又有五层，很多个Top100组在一起构成了三层我们需要的商品。通过这些小类商品数据，我们再进详情页获取更多的字段（评论数，星数，是否FBA，价格等），包括每件商品的最顶层排名，我们称大类排名。通过商品去重，分布式代理以及数据的一些预处理设计，加大马力，运用IT采集技术，我们能得到亚马逊大部分卖得好的商品，通过筛选，排序，我们可以从不同角度观察商品趋势。对于卖家来选款的话是极好的。
 
-关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。我没操作过亚马逊的产品发布，听运营总监说，不同的商家会有一样ASIN的商品，如果谁的商品好（省略。。怕误解他人）。步骤一般是：通过该平台Web端查看某大类排名前一万名，进行一些筛选，比如价格在20刀的，FBA的商品，然后可以再点进去商品，看这件商品十几天的排名和价格变化等，然后我决定跟卖，先去阿里巴巴批发看看有没有这个东西，有！价格利润很多。好，我们卖！然后每天可以上来平台搜我们这件商品的ASIN，查看最近的变化。
+关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。不同的商家会有一样ASIN的商品，如果谁的商品好（省略...）。步骤一般是：通过该平台Web端查看某大类排名前一万名，进行一些筛选，比如价格在20刀的，FBA的商品，然后可以再点进去商品，看这件商品十几天的排名和价格变化等，然后我决定跟卖，先去阿里巴巴批发看看有没有这个东西，有！价格利润很多。好，我们卖！然后每天可以上来平台搜我们这件商品的ASIN，查看最近的变化。
 
 因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，彻底开源. 这是BI爬虫端, BI网站端见： [亚马逊四站BI产品网站端](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
@@ -68,8 +68,8 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ```
 ├── config  配置文件：运行前必须配置
-│   ├── de_config.json    德国亚马逊爬虫远程配置（在本地新建一个空文件：远程.txt 即加载此配置）
-│   ├── de_local_config.json   德国亚马逊爬虫本地配置（默认加载这个）
+│   ├── de_config.json    德国亚马逊爬虫远程配置（在本地新建一个空文件：`远程.txt` 即加载此配置）
+│   ├── de_local_config.json   德国亚马逊爬虫本地配置（默认加载这个, 以下是不同站点的配置）
 │   ├── de_log.json	德国亚马逊日志记录文件
 │   ├── jp_config.json 
 │   ├── jp_local_config.json
@@ -88,9 +88,9 @@ For reason that the detail page is such large that waste a lot of disk space, we
 │   ├── core   核心包
 │   └── log
 ├── result结果
-│   ├── 20170731Clothing.xlsx   从网站端导出的数据
+│   ├── 20170731Clothing.xlsx   从网站端导出的数据(示例数据)
 │   └── 20170731Kitchen&Dining.xlsx
-├── sh       这个是脚本，我们用来快速启动爬虫的
+├── sh          这个是脚本，我们用来快速启动爬虫的
 │   ├── docker   用来快速启动docker版redis和mysql
 │   ├── build.sh 在本地编译二进制，然后直接通过以下scp.sh发送到阿里云等机器
 │   ├── scp.sh
@@ -105,7 +105,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 │   └── usa
 └── tool
     ├── python
-    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，暂时你不需要用到
+    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，每隔个两三个月就需要重爬一次
 ├── ip.txt   你可以将固定的代理IP放在这里，因为亚马逊详情页爬太多会反爬虫
 
 ```
@@ -296,11 +296,11 @@ go get -v -u https://github.com/hunterhug/AmazonBigSpider
 	│   └── urlpool.go
 	└── usa
 	    ├── asinmain.go  4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数据和Hash方便查看历史趋势
-	    ├── asinpool.go  不用
+	    ├── asinpool.go  中间产物,不用
 	    ├── initsql.go  1.初始化数据库
 	    ├── ippool.go   2.插代理IP到Redis并监控爬虫
 	    ├── listmain.go	4.抓取类目列表Top100，打redis记录额外数据以及打Mysql小类数据
-	    ├── listparsemain.go 不用
+	    ├── listparsemain.go 中间产物,不用
 	    └── urlpool.go  3.打类目URL到redis，供4步骤使用
 ```
 
@@ -324,11 +324,17 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 
 ### 4. 初始化数据库
 
-如果不申明，都是以美国站为例。需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，上面已经编译好二进制, 执行:
+如果不申明，都是以美国站为例。需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，要运行上面编译好的二进制, 执行:
+
 
 ```
+# 分别进入不同站点的目录, 执行初始化数据库操作
+cd spiders/usa
 ./USQL
-或者
+```
+
+如果你不想运行二进制, 你也可以:
+```
 go run spiders/usa/initsql.go
 ```
 
@@ -359,6 +365,27 @@ source uk_category.sql
 ```
 
 填充这个数据是为了你可以抓取这些类目的商品，你可以开启网站端，在网站端设置抓取几页，是否抓取！
+
+这个数据是从哪里来的呢? 这个是`tool/url/usa_urlmain.go`抓取的, 类目URL建议每三个月抓一次. 运行好`./USQL`后, 你也可以通过这种方式导入类目数据:
+
+请按命令顺序执行, 请耐心等待每段程序(可以喝杯咖啡)
+
+```
+# 需要root用户执行
+cd tool/url
+
+# 以下分别是第一/二层,三层,四层,五层,六层类目URL的抓取, toolproxy表示代理, 如果被机器人,请使用代理
+go run usa_urlmain.go -toolproxy=false -toolstep=0
+go run usa_urlmain.go -toolproxy=true -toolstep=1
+go run usa_urlmain.go -toolproxy=true -toolstep=2
+go run usa_urlmain.go -toolproxy=true -toolstep=3
+go run usa_urlmain.go -toolproxy=true -toolstep=4
+
+# 解析塞入数据库
+go run usa_urlparse.go
+
+# 其他站点类似: de,jp,uk
+```
 
 ### 5. 运行程序
 
@@ -414,7 +441,7 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 1. 快代理： [http://www.kuaidaili.com](http://www.kuaidaili.com)
 2. 无忧代理： [http://www.data5u.com](http://www.data5u.com)
 3. 芝麻代理：[http://www.zhimaruanjian.com](http://www.zhimaruanjian.com)
-4. 米扑代理： [http://proxy.mimvp.com](http://www.zhimaruanjian.com)
+4. 米扑代理： [http://proxy.mimvp.com](http://www.zhimaruanjian.com)  (IP池接口已经写好)
 
 如何对接不同代理IP的API呢，要写代码，是的，没错，你也可以打开浏览器，打开`http://127.0.0.1:12345`,自行手动导入IP(12346,12347,12348端口分别是日本/德国/英国亚马逊的爬虫监控)。如下图：
 

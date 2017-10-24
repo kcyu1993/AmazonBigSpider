@@ -30,10 +30,17 @@ import (
 var Dir = util.CurDir()
 var CoreDir = filepath.Join(Dir, "public", "core")
 var Local = true
+var ToolStep int
+var ToolProxy bool
 
 func init() {
 	rootdir := flag.String("root", "", "root config")
 	coredir := flag.String("core", "", "core config")
+	temp := flag.Int("toolstep", 0, "which step get category url")
+	ToolStep = *temp
+	temp1 := flag.Bool("toolproxy", false, "proxy get category url?")
+	ToolProxy = *temp1
+
 	user := flag.String("user", "", "user")
 	if !flag.Parsed() {
 		flag.Parse()
