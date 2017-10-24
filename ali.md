@@ -26,26 +26,30 @@ tmpfs           100M     0  100M   0% /run/user/0
 以下是执行过程(全过程, 小白操作):
 
 ```
+# 登录
 ssh root@IP
 
+# 更新安装git
 apt update
 apt install git
 
-mkdir app
-cd app
-
+# 拉代码
+mkdir -p ~/gocode/src/github.com/hunterhug
+cd ~/gocode/src/github.com/hunterhug
 git clone https://github.com/hunterhug/AmazonBigSpider
 git clone https://github.com/hunterhug/AmazonBigSpiderWeb
 
+# 安装必要软件
 apt install docker.io
 apt install docker-compose
 
+# 启动MYSQL和Redis
 cd AmazonBigSpider
 cd sh/docker
-chmod ./build.sh
-
+chmod 777 ./build.sh
 ./build
 
+#  检测是否安装成功
 docker ps
 docker exec -it GoSpider-redis redis-cli -a GoSpider
 redis> keys *  (Ctrl+C)
@@ -53,5 +57,29 @@ redis> keys *  (Ctrl+C)
 docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
 mysql> show databases;
 mysql> exit
+
+# scp go1.8压缩包到远程机器
+# scp xxxx.tar.gz  ssh@IP:
+# 安装golang1.8
+tar -zxvf xxxx.tar.gz
+vim /etc/profile.d/myenv.sh
+
+>>>>
+export GOROOT=/root/go
+export GOPATH=/root/gocode
+export GOBIN=$GOPATH/bin
+export PATH=.:$PATH:$GOROOT/bin:$GOBIN
+:wq
+>>>>
+
+source /etc/profile.d/myenv.sh
+go env
+
+# 解决依赖
+cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider
+go get -v github.com/tools/godep
+
+# 编译爬虫端二进制, 并且初始化数据库(包括获取类目URL)
+#
 
 ```
