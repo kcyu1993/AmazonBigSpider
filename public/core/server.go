@@ -86,7 +86,7 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	</div>
 	<div style="float:right;width:20%%;margin:30px">
 	<h1>This page you should caution!</h1>
-	<img style="max-width: 100%%;" src="http://www.cjhug.me/static/me.gif" />
+	<img style="max-width: 100%%;" src="http://www.lenggirl.com/static/me.gif" />
 	</div>
 	</body>
 	</html>
