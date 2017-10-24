@@ -105,10 +105,12 @@ type Config struct {
 }
 
 func InitConfig(cfpath string, logpath string) {
+	fmt.Print(logpath)
 	// log
 	NewLog(logpath)
 	// config load
 	configbytes, err := util.ReadfromFile(cfpath)
+
 	if err != nil {
 		panic(err.Error())
 	}
