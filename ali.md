@@ -75,7 +75,36 @@ export PATH=.:$PATH:$GOROOT/bin:$GOBIN
 source /etc/profile.d/myenv.sh
 go env
 
-# 编译爬虫端二进制, 并且初始化数据库(包括获取类目URL)
-#
+# 编译爬虫端二进制
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider
+chmod 777 sh/build
+sh/build
+
+# 新建数据库
+spiders/usa/USQL
+spiders/jp/USQL
+spiders/de/USQL
+spiders/uk/USQL
+
+docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
+mysql> show databases;
+mysql> exit
+
+# 初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
+cd gocode/src/github.com/hunterhug/AmazonBigSpider/tool/url/
+go run usa_urlmain.go -toolproxy=false -toolstep=0
+go run usa_urlmain.go -toolproxy=true -toolstep=1
+go run usa_urlmain.go -toolproxy=true -toolstep=2
+go run usa_urlmain.go -toolproxy=true -toolstep=3
+go run usa_urlmain.go -toolproxy=true -toolstep=4
+
+# 初始化数据库: 使用我抓取好的类目URL
+docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
+
+source jp_category.sql
+source de_category.sql
+source usa_category.sql
+source uk_category.sql
+
 
 ```
