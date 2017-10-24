@@ -26,6 +26,7 @@ import (
 	// 为了依赖
 	_ "github.com/hunterhug/GoSpider/store/myredis"
 	_ "github.com/hunterhug/GoSpider/store/mysql"
+	_ "github.com/hunterhug/GoSpider/query"
 
 	"os"
 	"path/filepath"

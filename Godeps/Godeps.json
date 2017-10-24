@@ -4,9 +4,23 @@
 	"GodepVersion": "v79",
 	"Deps": [
 		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v1.1.0-6-g8806ada",
+			"Rev": "8806ada2a4ab225c06e9106f9631be80932db7ce"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "349dd0209470eabd9514242c688c403c0926d266"
+		},
+		{
 			"ImportPath": "github.com/go-sql-driver/mysql",
 			"Comment": "v1.2-194-g7ebe0a5",
 			"Rev": "7ebe0a500653eeb1859664bed5e48dec1e164e73"
+		},
+		{
+			"ImportPath": "github.com/hunterhug/GoSpider/query",
+			"Comment": "1.0.0-5-ga5f8965",
+			"Rev": "a5f8965a6ccfc88083249885cea2076e2c70c9a6"
 		},
 		{
 			"ImportPath": "github.com/hunterhug/GoSpider/spider",
@@ -37,6 +51,14 @@
 			"ImportPath": "github.com/op/go-logging",
 			"Comment": "v1-7-g970db52",
 			"Rev": "970db520ece77730c7e4724c61121037378659d9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "ab5485076ff3407ad2d02db054635913f017b0ed"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "ab5485076ff3407ad2d02db054635913f017b0ed"
 		},
 		{
 			"ImportPath": "gopkg.in/bsm/ratelimit.v1",

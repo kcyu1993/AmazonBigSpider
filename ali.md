@@ -75,10 +75,6 @@ export PATH=.:$PATH:$GOROOT/bin:$GOBIN
 source /etc/profile.d/myenv.sh
 go env
 
-# 解决依赖
-cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider
-go get -v github.com/tools/godep
-
 # 编译爬虫端二进制, 并且初始化数据库(包括获取类目URL)
 #
 
