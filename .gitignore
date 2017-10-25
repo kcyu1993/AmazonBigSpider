@@ -4,8 +4,8 @@
 *.log
 *.html
 *.out
-#UASIN
-#UIP
-#ULIST
-#USQL
-#UURL
+UASIN
+UIP
+ULIST
+USQL
+UURL
