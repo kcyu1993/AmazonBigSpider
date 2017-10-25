@@ -236,4 +236,11 @@ go run de_urlmain.go -toolproxy=true -toolstep=2
 go run de_urlmain.go -toolproxy=true -toolstep=3
 go run de_urlmain.go -toolproxy=true -toolstep=4
 go run de_urlparse.go
+
+# 导出数据给别人用
+cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/doc/sql/days
+docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 smart_base smart_category>usa_category$(date +\%Y\%m\%d).sql;
+docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 de_smart_base smart_category>de_category$(date +\%Y\%m\%d).sql;
+docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 uk_smart_base smart_category>uk_category$(date +\%Y\%m\%d).sql;
+docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 jp_smart_base smart_category>jp_category$(date +\%Y\%m\%d).sql;
 ```
