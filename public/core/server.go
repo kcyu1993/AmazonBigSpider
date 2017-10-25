@@ -39,9 +39,9 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	io.WriteString(rw, fmt.Sprintf(`
 	<!Doctype html>
 	<html>
-	<head>http://www.zhimaruanjian.com
+	<head>QQ:459527502
 	<meta charset="utf-8" />
-	<title>%s</title>
+	<title>超级大爬虫监控端-%s</title>
 	</head>
 	<body>
 	<h1>%v</h1>
@@ -88,6 +88,7 @@ func (c *AmazonController) ServeHTTP(rw http.ResponseWriter, req *http.Request) 
 	<h1>This page you should caution!</h1>
 	<img style="max-width: 100%%;" src="http://www.lenggirl.com/static/me.gif" />
 	</div>
+	<div>作者: 陈白痴, 版权所有: <a href="https://github.com/hunterhug">主页</a></div>
 	</body>
 	</html>
 	`, Today, time.Now(), c.SpiderType, c.Message, c.Port, dudu))
