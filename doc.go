@@ -29,7 +29,7 @@ import (
 
 var Dir = util.CurDir()
 var CoreDir = filepath.Join(Dir, "public", "core")
-var Local = true
+var Local = false
 
 func init() {
 	rootdir := flag.String("root", "", "root config")
