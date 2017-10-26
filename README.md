@@ -10,6 +10,7 @@ v2.0
 
 1. 增加安装详细说明
 2. 修补一些BUG
+3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql
 
 ## 一. 介绍
 
@@ -119,6 +120,26 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 记录一次实例安装: 见[阿里云安装该产品](/ali.md), 请仔细阅读!!! <------------ 真的是实战安装!!
 
+```
+/** * * ━━━━━━神兽出没━━━━━━ 
+* 　　　┏┓　　　┏┓ 
+* 　　┃　　　　　　　┃ 
+* 　　┃　　　━　　　┃ 
+* 　　┃　┳┛　┗┳　┃ 
+* 　　┃　　　　　　　┃ 
+* 　　┃　　　┻　　　┃ 
+* 　　┃　　　　　　　┃ 
+* 　　┗━┓　　　┏━┛Code is far away from bug with the animal rotecting 
+* 　　　　┃　　　┃ 神兽保佑,代码无bug 
+* 　　　　┃　　　┃ 
+* 　　　　┃　　　┗━━━┓ 
+* 　　　　┃　　　　　　　┣┓ 
+* 　　　　┃　　　　　　　┏┛ 
+* 　　　　┗┓┓┏━┳┓┏┛ 
+* 　　　　　┃┫┫　┃┫┫ 
+* 　　　　　┗┻┛　┗┻┛ 
+* * ━━━━━━感觉萌萌哒━━━━━━ */ /** 
+```
 ### 1. 获取代码/安装环境
 
 首先你必须安装MYSQL/Redis和Golang1.8(请百度)，你也可以参见[GoSpider-docker](https://github.com/hunterhug/GoSpider-docker)安装MYSQL/Redis(只需安装好docker和docker compose, 直接点击sh/docker/build.sh)
@@ -454,7 +475,7 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 
 EXPORT IP DIY，按行写入IP，然后塞，帐号和密码是:jinhan 459527502
 
-我已经写好了一个米扑代理的接口，你可以通过打开这个URL导入：
+`我已经写好了一个米扑代理的接口`，你可以通过打开这个URL导入：
 
 ```
 curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502
