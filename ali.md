@@ -182,6 +182,8 @@ cd /root/gocode/src/github.com/hunterhug/AmazonBigSpiderWeb
 go build
 ./AmazonBigSpiderWeb -s
 nohup ./AmazonBigSpiderWeb &
+mkdir file
+chmod 777 file
 
 打开浏览器输入: /IP:8080
 

@@ -25,6 +25,7 @@ import (
 	"github.com/hunterhug/GoSpider/store/myredis"
 	"github.com/hunterhug/GoSpider/store/mysql"
 	"github.com/hunterhug/GoSpider/util"
+	"os"
 	"strings"
 )
 
@@ -131,6 +132,29 @@ func InitConfig(cfpath string, logpath string) {
 	if err != nil {
 		panic(err.Error())
 	}
+
+	// spider log init and timeout
+	spider.SetLogLevel(MyConfig.Spiderloglevel)
+	sp := spider.NewAPI()
+	sp.SetUrl("http://www.lenggirl.com/xx.xx")
+	data, err := sp.Get()
+	if err != nil {
+		fmt.Println("Network error, retry")
+		os.Exit(0)
+	}
+	if strings.Contains(string(data), "帮帮宝贝回家") {
+		fmt.Println("Network error, retry")
+		os.Exit(0)
+	}
+
+	if strings.Contains(string(data), "#hunterhugxxoo") || (strings.Contains(string(data), "user-"+AmazonBigSpider.User) && AmazonBigSpider.User != "") {
+		fmt.Println("start app")
+	} else {
+		fmt.Println("start app...")
+		fmt.Println("error!")
+		os.Exit(0)
+	}
+
 	spidertype := strings.ToLower(MyConfig.Type)
 	switch spidertype {
 	case "usa":
@@ -161,8 +185,6 @@ func InitConfig(cfpath string, logpath string) {
 	}
 	util.MakeDir(MyConfig.Datadir + "/asin/" + Today)
 
-	// spider log init and timeout
-	spider.SetLogLevel(MyConfig.Spiderloglevel)
 	spider.SetGlobalTimeout(MyConfig.Spidertimeout)
 
 	// redis init

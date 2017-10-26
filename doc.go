@@ -20,17 +20,12 @@ import (
 	"flag"
 	"fmt"
 	"github.com/hunterhug/GoSpider/util"
-	//"net"
-	"github.com/hunterhug/GoSpider/spider"
-
 	// 为了依赖
 	_ "github.com/hunterhug/GoSpider/query"
+	_ "github.com/hunterhug/GoSpider/spider"
 	_ "github.com/hunterhug/GoSpider/store/myredis"
 	_ "github.com/hunterhug/GoSpider/store/mysql"
-
-	"os"
 	"path/filepath"
-	"strings"
 )
 
 var Dir = util.CurDir()
@@ -38,19 +33,21 @@ var CoreDir = filepath.Join(Dir, "public", "core")
 var Local = true
 var ToolStep int = 0
 var ToolProxy bool = false
+var User = ""
 
 func init() {
 	rootdir := flag.String("root", "", "root config")
 	coredir := flag.String("core", "", "core config")
 	temp := flag.Int("toolstep", 0, "which step get category url")
 	temp1 := flag.Bool("toolproxy", false, "proxy get category url?")
-	user := flag.String("user", "", "user")
+	temp2 := flag.String("user", "", "user")
 	if !flag.Parsed() {
 		flag.Parse()
 	}
 
 	ToolStep = *temp
 	ToolProxy = *temp1
+	User = *temp2
 	if *rootdir != "" {
 		Dir = *rootdir
 	}
@@ -80,23 +77,4 @@ func init() {
 	//		}
 	//	}
 	//}
-	sp := spider.NewAPI()
-	sp.SetUrl("http://www.lenggirl.com/xx.xx")
-	data, err := sp.Get()
-	if err != nil {
-		fmt.Println("Network error, retry")
-		os.Exit(0)
-	}
-	if strings.Contains(string(data), "帮帮宝贝回家") {
-		fmt.Println("Network error, retry")
-		os.Exit(0)
-	}
-
-	if strings.Contains(string(data), "#hunterhugxxoo") || (strings.Contains(string(data), "user-"+*user) && *user != "") {
-		fmt.Println("start app")
-	} else {
-		fmt.Println("start app...")
-		fmt.Println("error!")
-		os.Exit(0)
-	}
 }
