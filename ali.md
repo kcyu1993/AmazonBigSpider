@@ -90,10 +90,10 @@ chmod 777 sh/build
 sh/build
 
 # 新建数据库
-spiders/usa/USQL
-spiders/jp/USQL
-spiders/de/USQL
-spiders/uk/USQL
+$GOPATH/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/USQL
+$GOPATH/src/github.com/hunterhug/AmazonBigSpider/spiders/jp/USQL
+$GOPATH/src/github.com/hunterhug/AmazonBigSpider/spiders/de/USQL
+$GOPATH/src/github.com/hunterhug/AmazonBigSpider/spiders/uk/USQL
 
 docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
 mysql> show databases;
@@ -101,7 +101,7 @@ mysql> exit
 
 
 # 方式一: 初始化数据库: 使用我抓取好的类目URL, 方式二见最后
-cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/doc/sql
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/doc/sql
 cp * $HOME/mydocker/mysql/conf/
 docker exec -it  GoSpider-mysqldb mysql -uroot -p459527502
 
@@ -178,7 +178,7 @@ nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/de/UASIN -co
 netstat -ntpl
 
 # 启动网站端
-cd /root/gocode/src/github.com/hunterhug/AmazonBigSpiderWeb
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpiderWeb
 go build
 ./AmazonBigSpiderWeb -s
 nohup ./AmazonBigSpiderWeb &
@@ -191,24 +191,11 @@ chmod 777 file
 
 # 接着特殊的: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
 # 需要先进数据库删除数据, 请逐行操作, (cdddddddddd@qq.com请换为自己的用户名: 参见:https://proxy.mimvp.com)
-docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
->>>
-use uk_smart_base
-TRUNCATE  table smart_category
-use de_smart_base
-TRUNCATE  table smart_category
-use jp_smart_base
-TRUNCATE  table smart_category
-use smart_base
-TRUNCATE  table smart_category;
->>
-
-cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/tool/url/
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/tool/url/
 curl "http://127.0.0.1:12345/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
 curl "http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
 curl "http://127.0.0.1:12347/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
 curl "http://127.0.0.1:12348/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502"
-
 
 # 如果出现很多错误,那你的代理不行, 请将toolproxy设置为false
 go run usa_urlmain.go -toolproxy=false -toolstep=0
@@ -239,8 +226,20 @@ go run de_urlmain.go -toolproxy=true -toolstep=3
 go run de_urlmain.go -toolproxy=true -toolstep=4
 go run de_urlparse.go
 
+docker exec -it GoSpider-mysqldb mysql -uroot -p459527502
+>>>
+use uk_smart_base
+TRUNCATE  table smart_category
+use de_smart_base
+TRUNCATE  table smart_category
+use jp_smart_base
+TRUNCATE  table smart_category
+use smart_base
+TRUNCATE  table smart_category;
+>>
+
 # 导出数据给别人用
-cd /root/gocode/src/github.com/hunterhug/AmazonBigSpider/doc/sql/days
+cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/doc/sql/days
 docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 smart_base smart_category>usa_category$(date +\%Y\%m\%d).sql;
 docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 de_smart_base smart_category>de_category$(date +\%Y\%m\%d).sql;
 docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 uk_smart_base smart_category>uk_category$(date +\%Y\%m\%d).sql;
