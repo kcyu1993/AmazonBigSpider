@@ -31,6 +31,7 @@ func main() {
 	} else {
 		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"usa_config.json", AmazonBigSpider.Dir+"/config/"+"usa_log.json")
 	}
+	core.OpenMysql()
 	dir := core.MyConfig.Datadir + "/url"
 	files, e := util.WalkDir(dir, "md")
 	filesxx, exx := util.WalkDir(dir, "mdxx")
