@@ -111,7 +111,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 │   └── usa
 └── tool
     ├── python
-    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，每隔个两三个月就需要重爬一次
+    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，每隔个两三个月就需要重爬一次(确认大类十分复杂...)
 ├── ip.txt   你可以将固定的代理IP放在这里，因为亚马逊详情页爬太多会反爬虫
 
 ```
