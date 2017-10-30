@@ -385,11 +385,12 @@ doc
 导入数据库一般可以这样：
 
 ```
+cd doc/sql
 mysql -uroot -p
 
 source jp_category.sql
 source de_category.sql
-source usa_category.sql
+source usa_category.sql ----请找到doc/sql/days下最新的sql....
 source uk_category.sql
 ```
 
