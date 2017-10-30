@@ -189,6 +189,8 @@ chmod 777 file
 
 # 第二天起就自动了
 
+
+# 以下需要专业人员进行, 请勿操作
 # 接着特殊的: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
 # 需要先进数据库删除数据, 请逐行操作, (cdddddddddd@qq.com请换为自己的用户名: 参见:https://proxy.mimvp.com)
 cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/tool/url/

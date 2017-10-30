@@ -408,7 +408,7 @@ func BigReallyName(name string) string {
 	r := strings.NewReplacer(patterns...)
 	dudu := strings.ToLower(r.Replace(bigname))
 	if strings.Contains(dudu, "cloth") {
-		return "Clothing"
+		return "Clothing Shoes & Jewelry"
 	}
 	switch dudu {
 	case "artscrafts":
@@ -444,12 +444,9 @@ func BigReallyName(name string) string {
 	case "hometheater":
 		bigname = "Electronics"
 	case "hpc":
-		bigname = "Health & Personal Care"
+		bigname = "Health & Household"
 	case "industrial":
 		bigname = "Industrial & Scientific"
-	case strings.ToLower("ClothingShoesJewelry"):
-		bigname = "Clothing"
-
 	default:
 		if strings.Contains(dudu, "kitchen") {
 			bigname = "Home & Kitchen"

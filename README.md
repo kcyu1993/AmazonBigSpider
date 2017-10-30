@@ -140,6 +140,9 @@ For reason that the detail page is such large that waste a lot of disk space, we
 * 　　　　　┗┻┛　┗┻┛ 
 * * ━━━━━━感觉萌萌哒━━━━━━ */ /** 
 ```
+
+安装十分复杂, 可来邮咨询.
+
 ### 1. 获取代码/安装环境
 
 首先你必须安装MYSQL/Redis和Golang1.8(请百度)，你也可以参见[GoSpider-docker](https://github.com/hunterhug/GoSpider-docker)安装MYSQL/Redis(只需安装好docker和docker compose, 直接点击sh/docker/build.sh)
