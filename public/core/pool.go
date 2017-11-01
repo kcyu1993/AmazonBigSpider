@@ -321,7 +321,9 @@ func senturltoredis(urls []string) {
 	}
 }
 
+
 func UrlPool() {
+	// TODO Modified to only upload selected category to Redis
 	OpenMysql()
 	urls := geturls()
 	senturltoredis(urls)
