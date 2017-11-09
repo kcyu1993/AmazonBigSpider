@@ -156,7 +156,7 @@ func shuffleip(ips map[string][]string) []string {
 	if len(ips) == 0 {
 		return returnip
 	}
-	smallsize := 100000000000
+	smallsize := 1000000
 	dudu := make(map[string]int)
 	for index, j := range ips {
 		dudu[index] = len(j)
