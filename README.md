@@ -10,7 +10,7 @@ v2.0
 
 1. 增加安装详细说明
 2. 修补一些BUG
-3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql
+3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
 
 ## 一. 介绍
 
@@ -48,7 +48,7 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，彻底开源. 这是BI爬虫端, BI网站端见： [亚马逊四站BI产品网站端](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
-英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心，老中文说明见[中文版说明](chinese.md)
+英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心.
 
 亚马逊爬虫支持
 
@@ -468,10 +468,7 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 
 如果你没有固定代理IP，那么请去购买代理IP，国内的有(我并没有打广告哈)：
 
-1. 快代理： [http://www.kuaidaili.com](http://www.kuaidaili.com)
-2. 无忧代理： [http://www.data5u.com](http://www.data5u.com)
-3. 芝麻代理：[http://www.zhimaruanjian.com](http://www.zhimaruanjian.com)
-4. 米扑代理： [http://proxy.mimvp.com](http://www.zhimaruanjian.com)  (IP池接口已经写好)
+1. 米扑代理： [http://proxy.mimvp.com](http://proxy.mimvp.com)  (IP池接口已经写好)
 
 如何对接不同代理IP的API呢，要写代码，是的，没错，你也可以打开浏览器，打开`http://127.0.0.1:12345`,自行手动导入IP(12346,12347,12348端口分别是日本/德国/英国亚马逊的爬虫监控)。如下图：
 
@@ -587,9 +584,7 @@ BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍
 
 # 免责声明
 
-关于版权，大规模使用，请提交发邮件或通过QQ告知我, 也可以不, 我还是希望告知一下...(爬虫有风险, 本人不承担由此开源项目带来的任何责任)。
-
-PS：这篇文章[为什么我的代码进入闭源状态](http://www.yinwang.org/blog-cn/2017/04/18/close-source)希望能够撼动你的心灵。
+关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任。
 
 ```
 	版权所有，侵权必究
