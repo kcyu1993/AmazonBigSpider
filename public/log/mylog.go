@@ -16,7 +16,7 @@
 */
 package log
 
-import "github.com/hunterhug/GoSpider/util"
+import "github.com/hunterhug/GoTool/util"
 
 var AmazonListLog, AmazonAsinLog, AmazonIpLog *Logger
 

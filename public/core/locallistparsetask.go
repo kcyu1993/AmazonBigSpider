@@ -18,7 +18,7 @@ package core
 
 // not use!!!!!down!
 import (
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/GoTool/util"
 	"math/rand"
 )
 

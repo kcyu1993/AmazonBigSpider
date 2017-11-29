@@ -19,12 +19,12 @@ package AmazonBigSpider
 import (
 	"flag"
 	"fmt"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/GoTool/util"
 	// 为了依赖
 	_ "github.com/hunterhug/GoSpider/query"
 	_ "github.com/hunterhug/GoSpider/spider"
-	_ "github.com/hunterhug/GoSpider/store/myredis"
-	_ "github.com/hunterhug/GoSpider/store/mysql"
+	_ "github.com/hunterhug/GoTool/store/myredis"
+	_ "github.com/hunterhug/GoTool/store/mysql"
 	"path/filepath"
 )
 

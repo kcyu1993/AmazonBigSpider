@@ -1,5 +1,5 @@
 /*
-Copyright 2017 by GoSpider author.
+Copyright 2017
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -14,10 +14,10 @@ package mysql
 
 // 数据库CURD，需要写SQL语句调用，简单就是美
 import (
+	log "github.com/hunterhug/GoTool/store"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	log "github.com/hunterhug/GoSpider/store"
 )
 
 // Mysql config

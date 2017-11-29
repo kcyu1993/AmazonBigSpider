@@ -19,7 +19,7 @@ package core
 import (
 	"fmt"
 	"github.com/hunterhug/GoSpider/spider"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/GoTool/util"
 	"strings"
 )
 

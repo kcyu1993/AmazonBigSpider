@@ -20,7 +20,7 @@ import (
 	"errors"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/GoTool/util"
 	"regexp"
 	"strings"
 )
