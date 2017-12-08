@@ -16,23 +16,25 @@ package spider
 import (
 	"bytes"
 	"errors"
-	"github.com/hunterhug/GoTool/util"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
+
+	"github.com/hunterhug/GoTool/util"
 )
 
 // New a spider, if ipstring is a proxy address, New a proxy client.
-// Proxy address such as: http://[user]:[password@]ip:port, [] stand it can choose or not
+// Proxy address such as:
+// 		http://[user]:[password@]ip:port, [] stand it can choose or not
+// 		socks5://127.0.0.1:1080
 func NewSpider(ipstring interface{}) (*Spider, error) {
 	sp := new(Spider)
-	sp.SpiderConfig = new(SpiderConfig)
 	sp.Header = http.Header{}
 	sp.Data = url.Values{}
 	sp.BData = []byte{}
 	if ipstring != nil {
-		client, err := NewProxyClient(ipstring.(string))
+		client, err := NewProxyClient(strings.ToLower(ipstring.(string)))
 		sp.Client = client
 		sp.Ipstring = ipstring.(string)
 		return sp, err
@@ -53,7 +55,6 @@ func New(ipstring interface{}) (*Spider, error) {
 // New Spider by Your Client
 func NewSpiderByClient(client *http.Client) *Spider {
 	sp := new(Spider)
-	sp.SpiderConfig = new(SpiderConfig)
 	sp.Header = http.Header{}
 	sp.Data = url.Values{}
 	sp.BData = []byte{}
@@ -94,6 +95,10 @@ func (sp *Spider) Go() (body []byte, e error) {
 	}
 }
 
+func (sp *Spider) GoByMethod(method string) (body []byte, e error) {
+	return sp.SetMethod(method).Go()
+}
+
 // This make effect only your spider exec serial! Attention!
 // Change Your Raw data To string
 func (sp *Spider) ToString() string {
@@ -118,55 +123,85 @@ func (sp *Spider) JsonToString() (string, error) {
 
 // Main method I make!
 func (sp *Spider) sent(method, contenttype string, binary bool) (body []byte, e error) {
+	// Lock it for save
 	sp.mux.Lock()
 	defer sp.mux.Unlock()
-	Wait(sp.Wait)
 
-	Logger.Debugf("[GoSpider] %s url: %s", method, sp.Url)
+	// Before FAction we can change or add something before Go()
+	if sp.BeforeAction != nil {
+		sp.BeforeAction(sp.Ctx, sp)
+	}
 
+	// Wait if must
+	if sp.Wait > 0 {
+		Wait(sp.Wait)
+	}
+
+	// For debug
+	Logger.Debugf("[GoSpider] %s %s", method, sp.Url)
+
+	// New a Request
 	var request = &http.Request{}
 
+	// If binary parm value is true and BData is not empty
+	// suit for POSTJSON(), POSTFILE()
 	if len(sp.BData) != 0 && binary {
 		pr := ioutil.NopCloser(bytes.NewReader(sp.BData))
 		request, _ = http.NewRequest(method, sp.Url, pr)
-	} else if len(sp.Data) != 0 {
+	} else if len(sp.Data) != 0 { // such POST() from table form
 		pr := ioutil.NopCloser(strings.NewReader(sp.Data.Encode()))
 		request, _ = http.NewRequest(method, sp.Url, pr)
 	} else {
 		request, _ = http.NewRequest(method, sp.Url, nil)
 	}
 
+	// Clone Header, I add some HTTP header!
 	request.Header = CloneHeader(sp.Header)
 
+	// In fact contenttype must not empty
 	if contenttype != "" {
 		request.Header.Set("Content-Type", contenttype)
 	}
 	sp.Request = request
 
+	// Debug for RequestHeader
 	OutputMaps("Request header", request.Header)
 
+	// Tolerate abnormal way to create a Spider
 	if sp.Client == nil {
 		sp.Client = Client
 	}
+
+	// Do it
 	response, err := sp.Client.Do(request)
 	if err != nil {
+		// I count Error time
 		sp.Errortimes++
 		return nil, err
 	}
 
+	// Close it attention response may be nil
 	if response != nil {
 		defer response.Body.Close()
 	}
 
+	// Debug
 	OutputMaps("Response header", response.Header)
-	Logger.Debugf("[GoSpider] Status：%v:%v", response.Status, response.Proto)
-	sp.UrlStatuscode = response.StatusCode
+	Logger.Debugf("[GoSpider] %v %s", response.Proto, response.Status)
 
+	// Read output
 	body, e = ioutil.ReadAll(response.Body)
 	sp.Raw = body
-	sp.Fetchtimes++
+
+	sp.UrlStatuscode = response.StatusCode
 	sp.Preurl = sp.Url
 	sp.Response = response
+	sp.Fetchtimes++
+
+	// After action
+	if sp.AfterAction != nil {
+		sp.AfterAction(sp.Ctx, sp)
+	}
 	return
 }
 

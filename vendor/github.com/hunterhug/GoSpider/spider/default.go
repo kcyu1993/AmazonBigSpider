@@ -25,7 +25,6 @@ func init() {
 
 	// New a spider
 	sp := new(Spider)
-	sp.SpiderConfig = new(SpiderConfig)
 	sp.Header = http.Header{}
 	sp.Data = url.Values{}
 	sp.BData = []byte{}
@@ -58,6 +57,10 @@ func Delete() (body []byte, e error) {
 
 func Go() (body []byte, e error) {
 	return DefaultSpider.Go()
+}
+
+func GoByMethod(method string) (body []byte, e error) {
+	return DefaultSpider.SetMethod(method).Go()
 }
 
 func OtherGo(method, contenttype string) (body []byte, e error) {

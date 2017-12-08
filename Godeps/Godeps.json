@@ -19,13 +19,13 @@
 		},
 		{
 			"ImportPath": "github.com/hunterhug/GoSpider/query",
-			"Comment": "v2.0",
-			"Rev": "aa2a2fab5564d71dd08eb757ef0ba8a5fc00a504"
+			"Comment": "v2.2-1-gf05c775",
+			"Rev": "f05c7759a3c63a40ada96614569b790cec9e83fe"
 		},
 		{
 			"ImportPath": "github.com/hunterhug/GoSpider/spider",
-			"Comment": "v2.0",
-			"Rev": "aa2a2fab5564d71dd08eb757ef0ba8a5fc00a504"
+			"Comment": "v2.2-1-gf05c775",
+			"Rev": "f05c7759a3c63a40ada96614569b790cec9e83fe"
 		},
 		{
 			"ImportPath": "github.com/hunterhug/GoTool/store",
@@ -54,6 +54,10 @@
 		},
 		{
 			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "c73622c77280266305273cb545f54516ced95b93"
+		},
+		{
+			"ImportPath": "golang.org/x/net/proxy",
 			"Rev": "c73622c77280266305273cb545f54516ced95b93"
 		},
 		{
