@@ -289,6 +289,7 @@ func IPPool() {
 }
 
 func geturls() []string {
+
 	num, e := RedisClient.Llen(MyConfig.Urlpool)
 	if e != nil {
 		panic(e)

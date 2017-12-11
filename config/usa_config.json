@@ -29,29 +29,29 @@
   "Spidertimeout": 35,
   "Spiderloglevel": "DEBUG",
   "Redisconfig": {
-    "Host": "10.90.40.16:31427",
+    "Host": "10.90.37.49:32084",
     "Password": "GoSpider",
     "DB": 0
   },
   "Redispoolsize": 100,
   "Basicdb": {
-    "Ip": "10.90.40.9",
-    "Port": "32738",
+    "Ip": "10.90.37.47",
+    "Port": "31804",
     "Username": "root",
     "Password": "happyhack",
     "Dbname": "smart_base"
   },
   "Hashdb": {
-    "Ip": "10.90.40.9",
-    "Port": "32738",
+    "Ip": "10.90.37.47",
+    "Port": "31804",
     "Username": "root",
     "Password": "happyhack",
     "Dbname": "smart_hash"
   },
   "Hashnum": 500,
   "Datadb": {
-    "Ip": "10.90.40.9",
-    "Port": "32738",
+    "Ip": "10.90.37.47",
+    "Port": "31804",
     "Username": "root",
     "Password": "happyhack",
     "Dbname": "smartdb"
