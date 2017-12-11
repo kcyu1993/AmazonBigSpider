@@ -140,6 +140,16 @@ func CreateAsinRankTables() error {
 	return err
 }
 
+func CreateAsinImageTabels() error {
+	// Create the AsinImage Table, store the physical location of the corresponding image.
+	sql := `CREATE TABLE IF NOT EXISTS ` + "`AsinImg%s`" + `(
+	id VARCHAR(150),
+	ImagePath VARCHAR(255) NULL,
+	PRIMARY KEY (id))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`
+	_, err := DataDb.Create(fmt.Sprintf(sql, Today))
+	return err
+}
+
 func InsertDetailMysql(item map[string]string) error {
 	sql := "REPLACE INTO `Asin" + Today + "`(id,bigname,title,rank,createtime,price,reviews,ship,sold,score,img) VALUES(?,?,?,?,?,?,?,?,?,?,?)"
 	// Todo

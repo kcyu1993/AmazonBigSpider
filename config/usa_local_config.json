@@ -30,7 +30,7 @@
   "Spiderloglevel": "INFO",
   "Redisconfig": {
     "Host": "127.0.0.1:6379",
-    "Password": "GoSpider",
+    "Password": "",
     "DB": 0
   },
   "Redispoolsize": 100,
@@ -38,14 +38,14 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "happyhack",
+    "Password": "",
     "Dbname": "smart_base"
   },
   "Hashdb": {
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "happyhack",
+    "Password": "",
     "Dbname": "smart_hash"
   },
   "Hashnum": 80,
@@ -53,7 +53,7 @@
     "Ip": "127.0.0.1",
     "Port": "3306",
     "Username": "root",
-    "Password": "happyhack",
+    "Password": "",
     "Dbname": "smartdb"
   },
   "Ipuse": {

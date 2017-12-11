@@ -29,7 +29,7 @@ import (
 
 var Dir = util.CurDir()
 var CoreDir = filepath.Join(Dir, "public", "core")
-var Local = false
+var Local = true
 
 func init() {
 	rootdir := flag.String("root", "", "root config")
@@ -44,8 +44,8 @@ func init() {
 	if *coredir != "" {
 		CoreDir = *coredir
 	}
-	// 在根目录建一个远程.txt使用远程配置
-	if util.FileExist(Dir + "/远程.txt") {
+	// 在根目录建一 remote.txt 使用远程配置
+	if util.FileExist(Dir + "/remote.txt") {
 		Local = false
 		fmt.Println("远程方式！！！")
 	}
