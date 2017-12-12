@@ -103,6 +103,15 @@ func Download(ip string, url string) ([]byte, error) {
 		return content, err
 	}
 }
+//
+//func ImageDownload(ip string, url string) ([]byte, error) {
+//	// TODO 2017.12.11 Later Define the Image Download operation, with the proxy settings.
+//	content, err := Download(ip, url)
+//
+//	//Process the image and return
+//	img, _ = os.Create("/tmp/%s.jpg")
+//	return content, err
+//}
 
 func NonProxyDownload(ip string, url string) ([]byte, error) {
 	browser, ok := Spiders.Get(ip)

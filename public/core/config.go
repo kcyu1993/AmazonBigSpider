@@ -85,19 +85,24 @@ type Config struct {
 	Datadb            mysql.MysqlConfig
 	Ipuse             map[string]IPSecret
 	Ips               map[string][]string
-	Urlpool           string
+	Urlpool           string // URL pool
 	Urldealpool       string
 	Urlhashpool       string // record times and another message
 	Asinpool          string
 	Asindealpool      string
 	Asinhashpool      string // record times and another message
+	ImageUrlpool  	  string // TODO add by kcyu to support the image url query.
+	ImageUrldealpool  string
+	ImageUrlhashpool  string
 	Otherhashpool     string
 	Extrafromredis    bool
 	Asinautopool      bool // url auto sent asin to redis
+	Imageautopool     bool // image auto sent pool
+	ImageUrlFormat	  string // stores the image format
 	Urlsql            string
 	Asinsql           string
 	Proxyinit         bool // every proxy ip init, del all exist ip?
-	Asinlocalkeep     bool
+	Asinlocalkeep     bool // shared by image asin local keep
 	Categorylocalkeep bool
 	Proxyasin         bool // use proxy ip?
 	Proxycategory     bool
@@ -129,6 +134,8 @@ func InitConfig(cfpath string, logpath string) {
 	MyConfig.Asinpool = MyConfig.Asinpool + "-" + Today
 	MyConfig.Asindealpool = MyConfig.Asindealpool + "-" + Today
 	MyConfig.Asinhashpool = MyConfig.Asinhashpool + "-" + Today
+	MyConfig.ImageUrlpool = MyConfig.ImageUrlpool + "-" + Today
+
 	MyConfig.Otherhashpool = MyConfig.Otherhashpool + "-" + Today
 	if err != nil {
 		panic(err.Error())

@@ -20,6 +20,8 @@
   "Asinhashpool": "USAAsinHASHPOOL",
   "Otherhashpool": "USAOtherHashPOOL",
   "Asinautopool": true,
+  "Imageautopool": true,
+  "ImageUrlFormat": "SL1000_SR640,640",
   "ExtraFromRedis": true,
   "Asinlocalkeep": false,
   "Categorylocalkeep": false,
