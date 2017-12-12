@@ -37,6 +37,7 @@ var (
 	HashDb                                    *mysql.Mysql
 	MyConfig                                  Config // some config.json
 	AmazonListLog, AmazonAsinLog, AmazonIpLog *log.Logger
+	AmazonImageLog							  *log.Logger						// image log
 	Today                                     string = util.TodayString(3) // Today
 	SpiderType                                int
 	URL                                       string
@@ -134,7 +135,11 @@ func InitConfig(cfpath string, logpath string) {
 	MyConfig.Asinpool = MyConfig.Asinpool + "-" + Today
 	MyConfig.Asindealpool = MyConfig.Asindealpool + "-" + Today
 	MyConfig.Asinhashpool = MyConfig.Asinhashpool + "-" + Today
+
+	// Add for image pool
 	MyConfig.ImageUrlpool = MyConfig.ImageUrlpool + "-" + Today
+	MyConfig.ImageUrldealpool = MyConfig.ImageUrldealpool + "-" + Today
+	MyConfig.ImageUrlhashpool = MyConfig.ImageUrlhashpool + "-" + Today
 
 	MyConfig.Otherhashpool = MyConfig.Otherhashpool + "-" + Today
 	if err != nil {
@@ -236,6 +241,7 @@ func NewLog(filename string) {
 	}
 	AmazonListLog = log.Get("daylist")
 	AmazonAsinLog = log.Get("dayasin")
+	AmazonImageLog = log.Get("dayimage")
 	AmazonIpLog = log.Get("dayip")
 }
 /*

@@ -69,14 +69,14 @@ func InsertAsinMysql(items []map[string]string, createtime string, category stri
 				AmazonListLog.Debugf("Sent to Asinpool Redis :%s", item["asin"])
 			}
 		}
+
 		// sent image id to redis pool
 		if MyConfig.Imageautopool {
-			imageUrl = strings.Contains(item["image"], "")
 			_, errp := RedisClient.Lpush(MyConfig.ImageUrlpool, item["image"])
 			if errp != nil {
-				AmazonListLog.Errorf("Sent to Asinpool Redis error:%v,%v", item["asin"], errp)
+				AmazonListLog.Errorf("Sent to ImageUrlpool Redis error:%v,%v", item["asin"], errp)
 			} else {
-				AmazonListLog.Debugf("Sent to Asinpool Redis :%s", item["asin"])
+				AmazonListLog.Debugf("Sent to ImageUrlpool Redis :%s", item["asin"])
 			}
 		}
 	}
