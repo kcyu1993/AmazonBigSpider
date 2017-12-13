@@ -18,7 +18,7 @@ package core
 
 import (
 	"fmt"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/parrot/util"
 	"os"
 )
 

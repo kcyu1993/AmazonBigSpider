@@ -2,7 +2,7 @@ Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
 >The Instructions is out of date! Please See Chinese Install.
 
-Core Package Depend On [https://www.github.com/hunterhug/GoSpider](https://www.github.com/hunterhug/GoSpider)
+Core Package Depend On [https://github.com/hunterhug/marmot](https://github.com/hunterhug/marmot)
 
 Env Config See [http://www.lenggirl.com/tool/centos7.html](http://www.lenggirl.com/tool/centos7.html)
 

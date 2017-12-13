@@ -19,10 +19,11 @@ package main
 // insert url into mysql
 import (
 	"fmt"
+	"strings"
+
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoSpider/util"
-	"strings"
+	"github.com/hunterhug/parrot/util"
 )
 
 func main() {
@@ -31,6 +32,7 @@ func main() {
 	} else {
 		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"usa_config.json", AmazonBigSpider.Dir+"/config/"+"usa_log.json")
 	}
+	core.OpenMysql()
 	dir := core.MyConfig.Datadir + "/url"
 	files, e := util.WalkDir(dir, "md")
 	filesxx, exx := util.WalkDir(dir, "mdxx")

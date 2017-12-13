@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/parrot/util"
 	"strings"
 )
 
@@ -31,6 +31,7 @@ func main() {
 	} else {
 		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"de_config.json", AmazonBigSpider.Dir+"/config/"+"de_log.json")
 	}
+	core.OpenMysql()
 	dir := core.MyConfig.Datadir + "/url"
 	files, e := util.WalkDir(dir, "md")
 	filesxx, exx := util.WalkDir(dir, "mdxx")

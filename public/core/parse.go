@@ -19,8 +19,8 @@ package core
 import (
 	"errors"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 	"regexp"
 	"strings"
 )
@@ -151,7 +151,7 @@ func ParseList(content []byte) ([]map[string]string, error) {
 }
 
 func IsRobot(content []byte) bool {
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 	text := doc.Find("title").Text()
 	// uk usa
 	if strings.Contains(text, "Robot Check") {
@@ -169,7 +169,7 @@ func IsRobot(content []byte) bool {
 }
 
 func Is404(content []byte) bool {
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 	text := doc.Find("title").Text()
 	if strings.Contains(text, "Page Not Found") {
 		return true
@@ -193,7 +193,7 @@ func Is404(content []byte) bool {
 
 func ParseDetail(url string, content []byte) map[string]string {
 	returnmap := map[string]string{}
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 
 	// title bigname
 	titletrip := "Amazon.com:"
@@ -408,7 +408,7 @@ func BigReallyName(name string) string {
 	r := strings.NewReplacer(patterns...)
 	dudu := strings.ToLower(r.Replace(bigname))
 	if strings.Contains(dudu, "cloth") {
-		return "Clothing"
+		return "Clothing Shoes & Jewelry"
 	}
 	switch dudu {
 	case "artscrafts":
@@ -444,14 +444,17 @@ func BigReallyName(name string) string {
 	case "hometheater":
 		bigname = "Electronics"
 	case "hpc":
-		bigname = "Health & Personal Care"
+		bigname = "Health & Household"
 	case "industrial":
 		bigname = "Industrial & Scientific"
-	case strings.ToLower("ClothingShoesJewelry"):
-		bigname = "Clothing"
+	default:
+		if strings.Contains(dudu, "kitchen") {
+			bigname = "Home & Kitchen"
+		}
 	}
 	return bigname
 }
+
 /*
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际

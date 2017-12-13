@@ -1,10 +1,20 @@
 # Full Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK)
 
+[![GitHub forks](https://img.shields.io/github/forks/hunterhug/AmazonBigSpider.svg?style=social&label=Forks)](https://github.com/hunterhug/AmazonBigSpider/network)
+[![GitHub stars](https://img.shields.io/github/stars/hunterhug/AmazonBigSpider.svg?style=social&label=Stars)](https://github.com/hunterhug/AmazonBigSpider/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
+[![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
+
+v2.0
+
+1. 增加安装详细说明
+2. 修补一些BUG
+3. 美国站类目URL已经更新: /doc/sql/days/usa_category20171026.sql(数据库导入必须是最新的)
+
 ## 一. 介绍
 
 ### 1. 英语介绍
-
-写给老外看的：
 
 Support UAS/Japan/Germany/UK, Amazing!
 
@@ -28,19 +38,17 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 ### 2. 中文介绍
 
-讨论欢迎加入[技术圈](http://segmentfault.com/g/1570000010693834)讨论。
+用途： 选款，特别适合亚马逊跨境电子商务运营公司(不支持中国亚马逊)
 
-用途： 选款，特别适合亚马逊电子商务运营公司
-
-核心竞争力： 四个国际站点：美国/英国/日本/德国，分布式，配套后台可视化
+核心竞争力： 四个国际站点：`美国/英国/日本/德国`，分布式，配套后台可视化
 
 原理： 首先通过获取亚马逊所有类目的URL，即从第一层大类，一直获取到第六层小类。通过这些类目URL可以依次抓取到这些类目某段时间的Top100的商品（类目下的爆款），这些Top100的商品排名我们称为小类排名，每个小时会变一次，但是由于变化基本不会太频繁以及抓取的商品数量很多，基本能覆盖。比如：有一个大类，下面有某一个三层类目，这个三层类目下面有几十个四层，四层下面又有五层，很多个Top100组在一起构成了三层我们需要的商品。通过这些小类商品数据，我们再进详情页获取更多的字段（评论数，星数，是否FBA，价格等），包括每件商品的最顶层排名，我们称大类排名。通过商品去重，分布式代理以及数据的一些预处理设计，加大马力，运用IT采集技术，我们能得到亚马逊大部分卖得好的商品，通过筛选，排序，我们可以从不同角度观察商品趋势。对于卖家来选款的话是极好的。
 
-关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。我没操作过亚马逊的产品发布，听运营总监说，不同的商家会有一样ASIN的商品，如果谁的商品好（省略。。怕误解他人）。步骤一般是：通过该平台Web端查看某大类排名前一万名，进行一些筛选，比如价格在20刀的，FBA的商品，然后可以再点进去商品，看这件商品十几天的排名和价格变化等，然后我决定跟卖，先去阿里巴巴批发看看有没有这个东西，有！价格利润很多。好，我们卖！然后每天可以上来平台搜我们这件商品的ASIN，查看最近的变化。
+关于选款： 亚马逊和国内天猫的差别在于店铺概念弱化，亚马逊以单品为为单位，基本一个ASIN就是一个商品类型，卖得好的商品很多人可以跟卖。不同的商家会有一样ASIN的商品，如果谁的商品好（省略...）。步骤一般是：通过该平台Web端查看某大类排名前一万名，进行一些筛选，比如价格在20刀的，FBA的商品，然后可以再点进去商品，看这件商品十几天的排名和价格变化等，然后我决定跟卖，先去阿里巴巴批发看看有没有这个东西，有！价格利润很多。好，我们卖！然后每天可以上来平台搜我们这件商品的ASIN，查看最近的变化。
 
-因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/GoSpider/blob/master/doc/amazon.md)，彻底开源.核心的爬虫包已经拆分成库了，见[ Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库 ](https://github.com/hunterhug/GoSpider)。这是BI爬虫端,BI网站端见： [https://github.com/hunterhug/AmazonBigSpiderWeb](https://github.com/hunterhug/AmazonBigSpiderWeb)
+因为这套产品包括爬虫端和网站端（可视化数据，筛选导出数据，结果见result结果文件夹），并且对技能要求较高，安装并稳定运行较复杂，可见[产品概况](https://github.com/hunterhug/marmot/blob/master/doc/amazon.md)，彻底开源. 这是BI爬虫端, BI网站端见： [亚马逊四站BI产品网站端](https://github.com/hunterhug/AmazonBigSpiderWeb)
 
-英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心，老中文说明见[中文版说明](chinese.md)
+英文已经凌乱，Old English Read this [OutOfDateYouShouldReferChinese](old-readme.md) 仔细阅读，有益身心.
 
 亚马逊爬虫支持
 
@@ -60,13 +68,14 @@ For reason that the detail page is such large that waste a lot of disk space, we
 
 分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
 
+以下为安装使用文档, 可以先`star`后慢慢看!
 
 ## 二. 文件目录
 
 ```
 ├── config  配置文件：运行前必须配置
-│   ├── de_config.json    德国亚马逊爬虫远程配置（在本地新建一个空文件：远程.txt 即加载此配置）
-│   ├── de_local_config.json   德国亚马逊爬虫本地配置（默认加载这个）
+│   ├── de_config.json    德国亚马逊爬虫远程配置（在本地新建一个空文件：`远程.txt` 即加载此配置）
+│   ├── de_local_config.json   德国亚马逊爬虫本地配置（默认加载这个, 以下是不同站点的配置）
 │   ├── de_log.json	德国亚马逊日志记录文件
 │   ├── jp_config.json 
 │   ├── jp_local_config.json
@@ -85,9 +94,9 @@ For reason that the detail page is such large that waste a lot of disk space, we
 │   ├── core   核心包
 │   └── log
 ├── result结果
-│   ├── 20170731Clothing.xlsx   从网站端导出的数据
+│   ├── 20170731Clothing.xlsx   从网站端导出的数据(示例数据)
 │   └── 20170731Kitchen&Dining.xlsx
-├── sh       这个是脚本，我们用来快速启动爬虫的
+├── sh          这个是脚本，我们用来快速启动爬虫的
 │   ├── docker   用来快速启动docker版redis和mysql
 │   ├── build.sh 在本地编译二进制，然后直接通过以下scp.sh发送到阿里云等机器
 │   ├── scp.sh
@@ -102,16 +111,42 @@ For reason that the detail page is such large that waste a lot of disk space, we
 │   └── usa
 └── tool
     ├── python
-    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，暂时你不需要用到
+    └── url   四站类目数据爬取程序在这里，需要手工改代码做类目，每隔个两三个月就需要重爬一次(确认大类十分复杂...)
 ├── ip.txt   你可以将固定的代理IP放在这里，因为亚马逊详情页爬太多会反爬虫
 
 ```
 
 ## 三. 如何使用
 
+记录一次实例安装: 见[阿里云安装该产品](/ali.md), 请仔细阅读!!! <------------ 真的是实战安装!!
+
+```
+/** * * ━━━━━━神兽出没━━━━━━ 
+* 　　　┏┓　　　┏┓ 
+* 　　┃　　　　　　　┃ 
+* 　　┃　　　━　　　┃ 
+* 　　┃　┳┛　┗┳　┃ 
+* 　　┃　　　　　　　┃ 
+* 　　┃　　　┻　　　┃ 
+* 　　┃　　　　　　　┃ 
+* 　　┗━┓　　　┏━┛Code is far away from bug with the animal rotecting 
+* 　　　　┃　　　┃ 神兽保佑,代码无bug 
+* 　　　　┃　　　┃ 
+* 　　　　┃　　　┗━━━┓ 
+* 　　　　┃　　　　　　　┣┓ 
+* 　　　　┃　　　　　　　┏┛ 
+* 　　　　┗┓┓┏━┳┓┏┛ 
+* 　　　　　┃┫┫　┃┫┫ 
+* 　　　　　┗┻┛　┗┻┛ 
+* * ━━━━━━感觉萌萌哒━━━━━━ */ /** 
+```
+
+安装十分复杂, 可来邮咨询.
+
 ### 1. 获取代码/安装环境
 
-首先你必须安装MYSQL/Redis和Golang1.8(请百度)，你可以参见[安装好docker和docker compose直接点击sh/docker/build.sh](https://github.com/hunterhug/GoSpider-docker)快速Docker版本安装MYSQL/Redis,
+首先你必须安装MYSQL/Redis和Golang1.8(请百度)，你也可以参见[GoSpider-docker](https://github.com/hunterhug/GoSpider-docker)安装MYSQL/Redis(只需安装好docker和docker compose, 直接点击sh/docker/build.sh)
+
 如果自己安装MYSQL，爬虫运行并发数太大时，会爆连接数，请编辑mysql配置文件（可百度）：
 
 ```
@@ -123,7 +158,7 @@ table_open_cache = 1000
 skip-name-resolve
 ```
 
-然后获取代码(此阶段可能有防火长城，一般没问题)：
+然后获取代码(此阶段可能有防火长城，一般没问题, 有问题请手动下载, 可能库依赖下载不下来, 请逐个库下载)：
 
 ```
 go get -v -u https://github.com/hunterhug/AmazonBigSpider
@@ -220,39 +255,9 @@ go get -v -u https://github.com/hunterhug/AmazonBigSpider
 }
 ```
 
-我们目前的配置只需改动数据库帐号和密码，以及Redis的密码（无密码留空），其他不建议改，只要你的数据库连接可远程，爬虫可以在不同机器并发启动，构造分布式爬虫（依靠Redis）。
+我们目前的配置`只需改动数据库帐号和密码，以及Redis的密码（无密码留空）`，`其他不建议改`，只要你的数据库连接可远程，爬虫可以在不同机器并发启动，构造分布式爬虫（依靠Redis）。
 
 ```
-{
-  "Type": "USA",
-  "Datadir": "/data/db/usa",
-  "Proxymaxtrytimes": 8,
-  "Rank": 100000,
-  "Listtasknum": 30,
-  "Asintasknum": 30,
-  "Localtasknum": 150,
-  "Proxypool": "USAIPPOOL",
-  "Proxyhashpool": "USAIPPOLLHASH",
-  "Proxyloophours": 24,
-  "Proxyasin": true,
-  "Proxycategory": false,
-  "Proxyinit": false,
-  "Urlpool": "USAURLPOOL",
-  "Urldealpool": "USAURLDEALPOOL",
-  "Urlhashpool": "USAURLHASHPOOL",
-  "Asinpool": "USAAsinPOOL",
-  "Asindealpool": "USAAsinDEALPOOL",
-  "Asinhashpool": "USAAsinHASHPOOL",
-  "Otherhashpool": "USAOtherHashPOOL",
-  "Asinautopool": true,
-  "ExtraFromRedis": true,
-  "Asinlocalkeep": false,
-  "Categorylocalkeep": false,
-  "Urlsql": "SELECT distinct url,id,bigpid ,name,bigpname,page FROM smart_category where isvalid=1 order by bigpid limit 100000",
-  "Asinsql": "SELECT distinct asin as id FROM `{?}` order by bigname limit 1000000",
-  "Spidersleeptime": 3,
-  "Spidertimeout": 35,
-  "Spiderloglevel": "INFO",
   "Redisconfig": {
     "Host": "127.0.0.1:6379",
     "Password": "GoSpider",   ##########################请改Redis密码(无密码留空)
@@ -320,46 +325,21 @@ go get -v -u https://github.com/hunterhug/AmazonBigSpider
 	│   └── urlpool.go
 	└── usa
 	    ├── asinmain.go  4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数据和Hash方便查看历史趋势
-	    ├── asinpool.go  不用
+	    ├── asinpool.go  中间产物,不用
 	    ├── initsql.go  1.初始化数据库
 	    ├── ippool.go   2.插代理IP到Redis并监控爬虫
 	    ├── listmain.go	4.抓取类目列表Top100，打redis记录额外数据以及打Mysql小类数据
-	    ├── listparsemain.go 不用
+	    ├── listparsemain.go 中间产物,不用
 	    └── urlpool.go  3.打类目URL到redis，供4步骤使用
 ```
 
-我们来编译二进制程序，如果报错，可能是Golang缺库（请go get补充安装），见`sh/build.sh`，请确保编译路径在`sh`路径下，编译程序如下：
+我们来编译二进制程序，如果报错，可能是Golang缺库（请go get补充安装），见`sh/build.sh`，请确保编译路径在`sh`路径下，执行以下命令编译程序:
 
 ```
-#!/bin/sh
-go build -ldflags "-s -w" -x -o ../spiders/usa/UIP ../spiders/usa/ippool.go
-go build -ldflags "-s -w" -x -o ../spiders/uk/UIP ../spiders/uk/ippool.go
-go build -ldflags "-s -w" -x -o ../spiders/jp/UIP ../spiders/jp/ippool.go
-go build -ldflags "-s -w" -x -o ../spiders/de/UIP ../spiders/de/ippool.go
-
-go build -ldflags "-s -w" -x -o ../spiders/usa/UURL ../spiders/usa/urlpool.go
-go build -ldflags "-s -w" -x -o ../spiders/uk/UURL ../spiders/uk/urlpool.go
-go build -ldflags "-s -w" -x -o ../spiders/jp/UURL ../spiders/jp/urlpool.go
-go build -ldflags "-s -w" -x -o ../spiders/de/UURL ../spiders/de/urlpool.go
-
-go build -ldflags "-s -w" -x -o ../spiders/usa/ULIST ../spiders/usa/listmain.go
-go build -ldflags "-s -w" -x -o ../spiders/uk/ULIST ../spiders/uk/listmain.go
-go build -ldflags "-s -w" -x -o ../spiders/jp/ULIST ../spiders/jp/listmain.go
-go build -ldflags "-s -w" -x -o ../spiders/de/ULIST ../spiders/de/listmain.go
-
-go build -ldflags "-s -w" -x -o ../spiders/usa/UASIN ../spiders/usa/asinmain.go
-go build -ldflags "-s -w" -x -o ../spiders/uk/UASIN ../spiders/uk/asinmain.go
-go build -ldflags "-s -w" -x -o ../spiders/jp/UASIN ../spiders/jp/asinmain.go
-go build -ldflags "-s -w" -x -o ../spiders/de/UASIN ../spiders/de/asinmain.go
-
-
-go build -ldflags "-s -w" -x -o ../spiders/usa/USQL ../spiders/usa/initsql.go
-go build -ldflags "-s -w" -x -o ../spiders/uk/USQL ../spiders/uk/initsql.go
-go build -ldflags "-s -w" -x -o ../spiders/jp/USQL ../spiders/jp/initsql.go
-go build -ldflags "-s -w" -x -o ../spiders/de/USQL ../spiders/de/initsql.go
+./build
 ```
 
-此时我们每个站点有5个二进制文件，我们以美国站为例子：
+此时我们每个站点有`5个二进制文件`，我们以美国站为例子：
 
 ```
 USQL	1.初始化数据库
@@ -369,15 +349,21 @@ ULIST	4.抓取类目列表Top100，打redis记录额外数据以及打Mysql小�
 UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数据和Hash方便查看历史趋势
 ```
 
+已经编译好Linux 64位的可执行文件, 你可以直接使用!
+
 ### 4. 初始化数据库
 
-如果不申明，都是以美国站为例。
+如果不申明，都是以美国站为例。需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，要运行上面编译好的二进制, 执行:
 
-需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，上面已经编译好二进制
 
 ```
+# 分别进入不同站点的目录, 执行初始化数据库操作
+cd spiders/usa
 ./USQL
-或者
+```
+
+如果你不想运行二进制, 你也可以:
+```
 go run spiders/usa/initsql.go
 ```
 
@@ -399,15 +385,37 @@ doc
 导入数据库一般可以这样：
 
 ```
+cd doc/sql
 mysql -uroot -p
 
 source jp_category.sql
 source de_category.sql
-source usa_category.sql
+source usa_category.sql ----请找到doc/sql/days下最新的sql....
 source uk_category.sql
 ```
 
 填充这个数据是为了你可以抓取这些类目的商品，你可以开启网站端，在网站端设置抓取几页，是否抓取！
+
+这个数据是从哪里来的呢? 这个是`tool/url/usa_urlmain.go`抓取的, 类目URL建议每三个月抓一次. 运行好`./USQL`后, 你也可以通过这种方式导入类目数据:
+
+请按命令顺序执行, 请耐心等待每段程序(可以喝杯咖啡)
+
+```
+# 需要root用户执行
+cd tool/url
+
+# 以下分别是第一/二层,三层,四层,五层,六层类目URL的抓取, toolproxy表示代理, 如果被机器人,请使用代理(建议不使用, 如果出现机器人再使用)
+go run usa_urlmain.go -toolproxy=false -toolstep=0
+go run usa_urlmain.go -toolproxy=true -toolstep=1
+go run usa_urlmain.go -toolproxy=true -toolstep=2
+go run usa_urlmain.go -toolproxy=true -toolstep=3
+go run usa_urlmain.go -toolproxy=true -toolstep=4
+
+# 解析塞入数据库
+go run usa_urlparse.go
+
+# 其他站点类似: de,jp,uk
+```
 
 ### 5. 运行程序
 
@@ -429,6 +437,16 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 ./UASIN 这个也可以分布式，抓详情页
 ```
 
+小总结:
+
+```
+./USQL -core=$GOPATH/src/github.com/hunterhug/AmazonBigSpider/public/core -root=$GOPATH/src/github.com/hunterhug/AmazonBigSpider
+./UIP -core=$GOPATH/src/github.com/hunterhug/AmazonBigSpider/public/core -root=$GOPATH/src/github.com/hunterhug/AmazonBigSpider
+./UURL -core=$GOPATH/src/github.com/hunterhug/AmazonBigSpider/public/core -root=$GOPATH/src/github.com/hunterhug/AmazonBigSpider
+./ULIST -core=$GOPATH/src/github.com/hunterhug/AmazonBigSpider/public/core -root=$GOPATH/src/github.com/hunterhug/AmazonBigSpider
+./UASIN -core=$GOPATH/src/github.com/hunterhug/AmazonBigSpider/public/core -root=$GOPATH/src/github.com/hunterhug/AmazonBigSpider
+```
+
 因为我们是自动爬虫，不可能每次都是手动跑，所以我们使用定时器，并且我们编译成二进制了，所以二进制可以随便放，但要传入`-core`和`-root`指出代码位置（还有一个原因是定时器必须设置全路径）
 
 敲入`crontab -e` ，写入以下定时器，每晚0-3点凌晨爬虫自动销毁和启动，其他站点类似，你可以参考`sh/*-crontab.txt`
@@ -443,16 +461,14 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 
 ```
 
+
 ### 6. 如何使用代理IP
 
 因为亚马逊四站点对详情页会反爬虫，一个IP可以抓500页然后被封，但是现在市场上卖的代理IP特别多，几百万动态那种，所以不用担心这个问题。如果你自己有固定的代理IP，请把它写在`ip.txt`里面。
 
 如果你没有固定代理IP，那么请去购买代理IP，国内的有(我并没有打广告哈)：
 
-1. 快代理： [http://www.kuaidaili.com](http://www.kuaidaili.com)
-2. 无忧代理： [http://www.data5u.com](http://www.data5u.com)
-3. 芝麻代理：[http://www.zhimaruanjian.com](http://www.zhimaruanjian.com)
-4. 米扑代理： [http://proxy.mimvp.com](http://www.zhimaruanjian.com)
+1. 米扑代理： [http://proxy.mimvp.com](http://proxy.mimvp.com)  (IP池接口已经写好)
 
 如何对接不同代理IP的API呢，要写代码，是的，没错，你也可以打开浏览器，打开`http://127.0.0.1:12345`,自行手动导入IP(12346,12347,12348端口分别是日本/德国/英国亚马逊的爬虫监控)。如下图：
 
@@ -460,7 +476,7 @@ UASIN	4. 抓取详情页，补充大类排名等商品信息，打Mysql大类数
 
 EXPORT IP DIY，按行写入IP，然后塞，帐号和密码是:jinhan 459527502
 
-我已经写好了一个米扑代理的接口，你可以通过打开这个URL导入：
+`我已经写好了一个米扑代理的接口`，你可以通过打开这个URL导入：
 
 ```
 curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=459527502
@@ -469,7 +485,9 @@ curl http://127.0.0.1:12346/mi?orderid=cdddddddddd@qq.com&user=jinhan&password=4
 其中`orderid=cdddddddddd@qq.com` = 后面的是你购买后给你的帐号，其他不变。我建议你还是购买其他的代理IP，毕竟这个产品如果很多人在用，会有IP冲突（某个人如果太暴力，分布式开太多，应该会），就是
 IP已经被人用了，然后你再用就无效了。
 
-### 7. 分布式部署
+自建代理请见[多IP多网关Squid架设Http服务器](http://www.lenggirl.com/tool/overwall.html#http)
+
+### 7. 分布式部署(可选)
 
 分布式部署时，由于数据量巨大，开启网站端时，容易卡，所以你可以对数据库进行读写分离，一般数据量 `不大` 可以不用。
 
@@ -519,7 +537,7 @@ server-id=2
 
 ### 8. 网站端
 
-BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍。你可以查看[ Full Golang Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK) | 亚马逊四站BI产品网站端 ](https://github.com/hunterhug/AmazonBigSpiderWeb)进行安装。
+BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍。你可以查看[Full Golang Automatic Amazon Distributed crawler|spider (USA, Japan, Germany and UK) | 亚马逊四站BI产品网站端 ](https://github.com/hunterhug/AmazonBigSpiderWeb)进行安装。
 
 截图如下：
 
@@ -550,16 +568,13 @@ BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍
 
 如果你想参与项目，我很欢迎，请发邮件或加我QQ。
 
-# 五. 支持我
+# 五. 心路历程
 
-开发这个产品已经十个月左右了，后面八个月的时间完全是自己一个人在维护和修BUG，只是对技术的兴趣，以及不想浪费这个产品，代码就像我的孩子，所以一直在开发，其间有很多人找到我QQ，希望我无偿回答问题，大部分
-都有回答，而且还帮别人搭了几套规模小的(腾讯云|阿里云)，搭机器和在跑的过程不断地发现BUG，并且不断地FIX BUG和加新功能。
+开发这个产品从2016年10月就开始了, 目前迭代从2.0开始.
 
-这个开发好的产品，我觉得很有价值，但无奈渠道太少，几乎没有人知道这个东西的存在，并且估计是因为门槛太高了，很多人知道了却望而却步，所以我写了这么一大篇的使用介绍，原理的话就更复杂了。
+核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
 
-核心的爬虫包也已经拆分成库了，见[ Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库 ](https://github.com/hunterhug/GoSpider)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站 ](https://www.github.com/hunterhug/GoWeb)
-
-如果这个产品有帮助到你,可以抛出五毛钱请我吃下辣条吗（什么？辣条五毛钱已经买不到了。。。淘宝最便宜也要6.8。。。。看来是吃不起辣条了。。。好怀念辣条，假装给自己众筹。。。）
+如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
 
 微信
 ![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
@@ -567,12 +582,9 @@ BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍
 支付宝
 ![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
 
-# Copyright
+# 免责声明
 
-关于版权，因为之前是以Apache协议的，后来伸手党太多，而且很不礼貌，我一气之下改成商业版权了，你可以使用它，但是如果你想
-大规模使用，请提交发邮件或通过QQ告知我。
-
-PS：这篇文章[为什么我的代码进入闭源状态](http://www.yinwang.org/blog-cn/2017/04/18/close-source)希望能够撼动你的心灵。
+关于版权，爬虫有风险, 本人不承担由此开源项目带来的任何责任。
 
 ```
 	版权所有，侵权必究

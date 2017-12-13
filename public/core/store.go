@@ -19,7 +19,7 @@ package core
 import (
 	"errors"
 	"fmt"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/parrot/util"
 	"strconv"
 	"strings"
 )

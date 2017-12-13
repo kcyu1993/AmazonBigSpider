@@ -16,13 +16,14 @@
 */
 package main
 
+// 手动执行啊, 大兄弟
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoSpider/util"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 	"strings"
 )
 
@@ -37,6 +38,7 @@ func main() {
 	} else {
 		core.InitConfig(AmazonBigSpider.Dir+"/config/"+"usa_config.json", AmazonBigSpider.Dir+"/config/"+"usa_log.json")
 	}
+	proxy = AmazonBigSpider.ToolProxy
 	//6级别
 	//26-28-14-4-10-0,https://www.amazon.co.jp/gp/bestsellers/books/3525971,ヴェルディ
 	util.MakeDir(core.MyConfig.Datadir + "/url/0")
@@ -46,10 +48,12 @@ func main() {
 	util.MakeDir(core.MyConfig.Datadir + "/url/4")
 	listlevel1 := index() //1
 	level0(listlevel1)    //2
-	//Good(1) //3
-	//Good(2)     //4
-	//Good(3) //5
-	//Good(4) //6
+	switch AmazonBigSpider.ToolStep {
+	case 1, 2, 3, 4:
+		Good(AmazonBigSpider.ToolStep)
+	default:
+		fmt.Println("End")
+	}
 }
 
 // so ! what !
@@ -165,7 +169,7 @@ func Good(level int) {
 }
 
 func robot(b []byte) bool {
-	doc, e := query.QueryBytes(b)
+	doc, e := expert.QueryBytes(b)
 	if e == nil {
 		if strings.Contains(doc.Find("title").Text(), "Robot Check") {
 			return true
@@ -273,7 +277,7 @@ func index() []string {
 			}
 			//zg_browseRoot
 			returnlist := []string{}
-			doc, _ := query.QueryBytes(bytescontents)
+			doc, _ := expert.QueryBytes(bytescontents)
 			root := doc.Find("#zg_browseRoot")
 			i := 1
 			root.Find("li").Each(func(num int, node *goquery.Selection) {
@@ -297,7 +301,7 @@ func index() []string {
 }
 
 func parseurl(pfilename string, bytescontents []byte, level int) []string {
-	doc, _ := query.QueryBytes(bytescontents)
+	doc, _ := expert.QueryBytes(bytescontents)
 	returnlist := []string{}
 	mark := "#zg_browseRoot"
 	for i := 0; i < level; i++ {
