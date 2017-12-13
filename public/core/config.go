@@ -72,6 +72,7 @@ type Config struct {
 	Proxymaxtrytimes  int
 	Listtasknum       int
 	Asintasknum       int
+	Imagetasknum	  int
 	Localtasknum      int
 	Proxypool         string
 	Proxyhashpool     string // record times and another message
@@ -102,6 +103,7 @@ type Config struct {
 	ImageUrlFormat	  string // stores the image format
 	Urlsql            string
 	Asinsql           string
+	Imagesql		  string // add the image sql command
 	Proxyinit         bool // every proxy ip init, del all exist ip?
 	Asinlocalkeep     bool // shared by image asin local keep
 	Categorylocalkeep bool

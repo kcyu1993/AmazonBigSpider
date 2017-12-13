@@ -82,12 +82,16 @@ func smart2016() string {
 	asintotal, _ := RedisClient.Llen(MyConfig.Asinpool)
 	asindone, _ := RedisClient.Hlen(MyConfig.Asinhashpool)
 	ipremain, _ := RedisClient.Llen(MyConfig.Proxypool)
+	imagepool, _ := RedisClient.Llen(MyConfig.ImageUrlpool)
+	imagedone, _ := RedisClient.Hlen(MyConfig.ImageUrlhashpool)
 	return fmt.Sprintf(`
 	<table border="1" style="text-align:center;font-size:2.0em">
 	<tr>
-	<th>URLPOOL</th><th>URLDONE</th><th>ASINPOOL</th><th>ASINDONE</th><th>IPPOOL</th>
+	<th>URLPOOL</th><th>URLDONE</th><th>ASINPOOL</th><th>ASINDONE</th><th>IPPOOL</th><th>ImagePOOL</th><th>ImageDone</th>
 	</tr>
 	<tr>
+	<td>%v</td>
+	<td>%v</td>
 	<td>%v</td>
 	<td>%v</td>
 	<td>%v</td>
@@ -95,7 +99,7 @@ func smart2016() string {
 	<td>%v</td>
 	</tr>
 	</table>
-	`, urltotal, urldone, asintotal, asindone, ipremain)
+	`, urltotal, urldone, asintotal, asindone, ipremain, imagepool, imagedone)
 
 }
 /*

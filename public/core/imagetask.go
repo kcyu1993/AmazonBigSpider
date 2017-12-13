@@ -9,6 +9,7 @@ package core
 import (
 	"github.com/hunterhug/GoSpider/util"
 	"math/rand"
+	"os"
 )
 
 var (
@@ -18,17 +19,17 @@ var (
 
 func asinimagetask(taskname string) {
 	second := rand.Intn(5)
-	AmazonAsinLog.Debugf("%s:%d second", taskname, second)
+	AmazonImageLog.Debugf("%s:%d second", taskname, second)
 	util.Sleep(second)
 	if MyConfig.Proxyasin {
-		err := GetAsinUrls()
+		err := GetImageUrls()
 		if err != nil {
-			AmazonAsinLog.Errorf(taskname + "-error:" + err.Error())
+			AmazonImageLog.Errorf(taskname + "-error:" + err.Error())
 		}
 	} else {
-		err := GetNoneProxyAsinUrls(taskname)
+		err := GetNoneProxyImageUrls(taskname)
 		if err != nil {
-			AmazonAsinLog.Errorf(taskname + "-error:" + err.Error())
+			AmazonImageLog.Errorf(taskname + "-error:" + err.Error())
 		}
 	}
 	asinendchan <- "done!"
@@ -36,22 +37,32 @@ func asinimagetask(taskname string) {
 
 func AsinImageGo() {
 	OpenMysql()
-	err := CreateAsinTables()
+	err := CreateAsinImageTabels()
+
 	if err != nil {
-		AmazonAsinLog.Errorf("createtables:%s,error:%s", Today, err.Error())
+		AmazonImageLog.Errorf("createtables:%s,error:%s", Today, err.Error())
 	}
-	err = CreateAsinRankTables()
+
+	// Create the directory accordingly.
+	err = os.MkdirAll(MyConfig.Datadir + "/image/" + Today, os.ModePerm)
 	if err != nil {
-		AmazonAsinLog.Errorf("createtables:%s,error:%s", "Asin"+Today, err.Error())
+		AmazonImageLog.Errorf("create folder error %s", err.Error())
 	}
-	asintasknum = MyConfig.Asintasknum
-	asinendchan = make(chan string, asintasknum)
-	for i := 0; i < asintasknum; i++ {
-		go asintask("atask" + util.IS(i))
+
+	// Create the tmp folder accordingly.
+	err = os.MkdirAll(MyConfig.Datadir + "/tmp_image/" + Today, os.ModePerm)
+	if err != nil {
+		AmazonImageLog.Errorf("create folder error %s", err.Error())
+	}
+
+	asinimagetasknum = MyConfig.Imagetasknum
+	asinimageendchan = make(chan string, asinimagetasknum)
+	for i := 0; i < asinimagetasknum; i++ {
+		go asinimagetask("imagetask" + util.IS(i))
 	}
 	go Clean()
-	for i := 0; i < asintasknum; i++ {
-		<-asinendchan
+	for i := 0; i < asinimagetasknum; i++ {
+		<-asinimageendchan
 	}
-	AmazonAsinLog.Log("List All done")
+	AmazonImageLog.Log("List All done")
 }

@@ -1,4 +1,8 @@
 #!/bin/sh
+
+go build -ldflags "-s -w" -x -o /workspace/spiders/usa/UIMGP /workspace/spiders/usa/imagepool.go
+go build -ldflags "-s -w" -x -o /workspace/spiders/usa/UIMAGE /workspace/spiders/usa/imagemain.go
+
 go build -ldflags "-s -w" -x -o /workspace/spiders/usa/UIP /workspace/spiders/usa/ippool.go
 go build -ldflags "-s -w" -x -o /workspace/spiders/uk/UIP /workspace/spiders/uk/ippool.go
 go build -ldflags "-s -w" -x -o /workspace/spiders/jp/UIP /workspace/spiders/jp/ippool.go

@@ -73,7 +73,7 @@ func Good(level int) {
 				ip = core.GetIP()
 
 				// before use, send to hash pool
-				ipbegintimes = util.GetSecend2DateTimes(util.GetSecendTimes())
+				ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 				core.RedisClient.Hset(core.MyConfig.Proxyhashpool, ip, ipbegintimes)
 			}
 			for _, file := range v {
@@ -131,14 +131,14 @@ func Good(level int) {
 							// if proxy ip err more than config, change ip
 							if proxy && ok && spider.Errortimes > core.MyConfig.Proxymaxtrytimes {
 								// die sent
-								ipendtimes := util.GetSecend2DateTimes(util.GetSecendTimes())
+								ipendtimes := util.GetSecond2DateTimes(util.GetSecondTimes())
 								insidetemp := ipbegintimes + "|" + ipendtimes + "|" + util.IS(spider.Fetchtimes-spider.Errortimes) + "|" + util.IS(spider.Errortimes)
 								core.RedisClient.Hset(core.MyConfig.Proxyhashpool, ip, insidetemp)
 								// you know it
 								core.Spiders.Delete(ip)
 								// get new proxy again
 								ip = core.GetIP()
-								ipbegintimes = util.GetSecend2DateTimes(util.GetSecendTimes())
+								ipbegintimes = util.GetSecond2DateTimes(util.GetSecondTimes())
 								core.RedisClient.Hset(core.MyConfig.Proxyhashpool, ip, ipbegintimes)
 							}
 						}

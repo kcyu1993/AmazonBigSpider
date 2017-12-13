@@ -85,7 +85,7 @@ func InsertAsinMysql(items []map[string]string, createtime string, category stri
 
 func SetAsinInvalid(url string) error {
 	return nil
-	// Todo not need
+	// not need
 	temp := strings.Split(url, "/dp/")
 	if len(temp) != 2 {
 		return errors.New(url + " is error")
@@ -95,9 +95,14 @@ func SetAsinInvalid(url string) error {
 	return err
 }
 
+func SetImageInvalid(image_id string) error {
+	return nil
+	// not need
+}
+
 func SetAsinToRightCategory(asin, num string) error {
 	return nil
-	// Todo not need
+	// not need
 	sql := "UPDATE smart_asin SET category=? where id=? limit 1"
 	_, err := BasicDb.Insert(sql, num, asin)
 	return err
@@ -154,9 +159,17 @@ func CreateAsinImageTabels() error {
 	// Create the AsinImage Table, store the physical location of the corresponding image.
 	sql := `CREATE TABLE IF NOT EXISTS ` + "`AsinImg%s`" + `(
 	id VARCHAR(150),
-	ImagePath VARCHAR(255) NULL,
+	imgUrl VARCHAR(255),
+	ImagePath VARCHAR(255) DEFAULT NULL,
+	isValid tinyint(4) DEFAULT '1' COMMENT 'if catch is 1, else 0',
 	PRIMARY KEY (id))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;`
 	_, err := DataDb.Create(fmt.Sprintf(sql, Today))
+	return err
+}
+
+func InsertImageMysql(asin string, url string, filename string) error {
+	sql := "REPLACE INTO `AsinImg" + Today + "` (id, imgUrl, ImagePath, isValid) VALUES(?,?,?,1)"
+	_, err := DataDb.Insert(sql, asin, url, filename)
 	return err
 }
 
