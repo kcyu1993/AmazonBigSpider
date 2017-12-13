@@ -17,31 +17,32 @@
 package core
 
 import (
-	"github.com/hunterhug/GoSpider/spider"
-	"github.com/hunterhug/GoTool/util"
 	"math/rand"
 	"strings"
 	"sync"
+
+	spider "github.com/hunterhug/marmot/miner"
+	"github.com/hunterhug/parrot/util"
 )
 
 var (
-	Spiders = &_Spider{brower: make(map[string]*spider.Spider)}
+	Spiders = &_Spider{brower: make(map[string]*spider.Worker)}
 	Ua      = map[int]string{}
 )
 
 type _Spider struct {
 	mux    sync.RWMutex
-	brower map[string]*spider.Spider
+	brower map[string]*spider.Worker
 }
 
-func (sb *_Spider) Get(name string) (b *spider.Spider, ok bool) {
+func (sb *_Spider) Get(name string) (b *spider.Worker, ok bool) {
 	sb.mux.RLock()
 	b, ok = sb.brower[name]
 	sb.mux.RUnlock()
 	return
 }
 
-func (sb *_Spider) Set(name string, b *spider.Spider) {
+func (sb *_Spider) Set(name string, b *spider.Worker) {
 	sb.mux.Lock()
 	sb.brower[name] = b
 	sb.mux.Unlock()
@@ -81,7 +82,7 @@ func Download(ip string, url string) ([]byte, error) {
 		return content, err
 	} else {
 		proxy := "http://" + ip
-		browser, _ := spider.NewSpider(proxy)
+		browser, _ := spider.New(proxy)
 		browser.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
 		browser.Header.Set("Accept-Language", "en-US;q=0.8,en;q=0.5")
 		browser.Header.Set("Connection", "keep-alive")
@@ -112,7 +113,7 @@ func NonProxyDownload(ip string, url string) ([]byte, error) {
 		spider.Logger.Debugf("url:%s,status:%d,ip:%s,ua:%s", url, browser.UrlStatuscode, ip, browser.Header.Get("User-Agent"))
 		return content, err
 	} else {
-		browser, _ := spider.NewSpider(nil)
+		browser, _ := spider.New(nil)
 		browser.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
 		browser.Header.Set("Accept-Language", "en-US;q=0.8,en;q=0.5")
 		browser.Header.Set("Connection", "keep-alive")
@@ -146,6 +147,7 @@ func GetIP() string {
 	spider.Logger.Debug("Get IP done:" + ip)
 	return ip
 }
+
 /*
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际

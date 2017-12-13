@@ -17,7 +17,7 @@
 package core
 
 import (
-	"github.com/hunterhug/GoSpider/spider"
+	spider "github.com/hunterhug/marmot/miner"
 	"testing"
 )
 

@@ -19,8 +19,8 @@ package core
 import (
 	"fmt"
 	"github.com/hunterhug/AmazonBigSpider"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoTool/util"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 	"testing"
 )
 
@@ -60,7 +60,7 @@ func TestParselist(t *testing.T) {
 
 func TestParseRank(t *testing.T) {
 	bytecontent, _ := util.ReadfromFile(AmazonBigSpider.Dir + "/test/list/xxx2.html")
-	doc, _ := query.QueryBytes(bytecontent)
+	doc, _ := expert.QueryBytes(bytecontent)
 	test := doc.Find("body").Text()
 	fmt.Printf("%#v\n", test)
 	t.Logf("%#v", ParseRank(test))
@@ -76,7 +76,7 @@ func TestManyRank(t *testing.T) {
 	for _, file := range files {
 		fmt.Printf("%s\n", file)
 		bytecontent, _ := util.ReadfromFile(file)
-		doc, _ := query.QueryBytes(bytecontent)
+		doc, _ := expert.QueryBytes(bytecontent)
 		test := doc.Find("body").Text()
 		//fmt.Printf("%#v\n", test)
 		fmt.Printf("%#v\n", ParseRank(test))

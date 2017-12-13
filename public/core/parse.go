@@ -19,8 +19,8 @@ package core
 import (
 	"errors"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoTool/util"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 	"regexp"
 	"strings"
 )
@@ -151,7 +151,7 @@ func ParseList(content []byte) ([]map[string]string, error) {
 }
 
 func IsRobot(content []byte) bool {
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 	text := doc.Find("title").Text()
 	// uk usa
 	if strings.Contains(text, "Robot Check") {
@@ -169,7 +169,7 @@ func IsRobot(content []byte) bool {
 }
 
 func Is404(content []byte) bool {
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 	text := doc.Find("title").Text()
 	if strings.Contains(text, "Page Not Found") {
 		return true
@@ -193,7 +193,7 @@ func Is404(content []byte) bool {
 
 func ParseDetail(url string, content []byte) map[string]string {
 	returnmap := map[string]string{}
-	doc, _ := query.QueryBytes(content)
+	doc, _ := expert.QueryBytes(content)
 
 	// title bigname
 	titletrip := "Amazon.com:"

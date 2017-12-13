@@ -4,29 +4,40 @@
 	警告： 以下的代码版权归属hunterhug，请不要传播或修改代码
 	你可以在教育用途下使用该代码，但是禁止公司或个人用于商业用途(在未授权情况下不得用于盈利)
 	商业授权请联系邮箱：gdccmcm14@live.com QQ:459527502
-
 	All right reserved
 	Attribution-NonCommercial-NoDerivatives 4.0 International
 	Notice: The following code's copyright by hunterhug, Please do not spread and modify.
 	You can use it for education only but can't make profits for any companies and individuals!
 	For more information on commercial licensing please contact hunterhug.
 	Ask for commercial licensing please contact Mail:gdccmcm14@live.com Or QQ:459527502
-
 	2017.7 by hunterhug
 */
-package log
+package expert
 
-import "github.com/hunterhug/parrot/util"
+import (
+	"regexp"
+	"strings"
 
-var AmazonListLog, AmazonAsinLog, AmazonIpLog *Logger
+	"github.com/PuerkitoBio/goquery" // please include by yourself
+)
 
-func New(filename string) {
-	logsconf, _ := util.ReadfromFile(filename)
-	err := Init(string(logsconf))
-	if err != nil {
-		panic(err)
+func QueryBytes(content []byte) (*goquery.Document, error) {
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(string(content)))
+	return doc, err
+}
+
+func QueryString(content string) (*goquery.Document, error) {
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(content))
+	return doc, err
+}
+
+// Find All picture. Must prefix http(s)://
+func FindPicture(s string) []string {
+	returnlist := []string{}
+	re, _ := regexp.Compile(`src\s*=\s*["'](http[s]?:\/\/.*?\.(jpg|jpeg|png|gif))["']`)
+	output := re.FindAllStringSubmatch(s, -1)
+	for _, o := range output {
+		returnlist = append(returnlist, o[1])
 	}
-	AmazonListLog = Get("daylist")
-	AmazonAsinLog = Get("dayasin")
-	AmazonIpLog = Get("dayip")
+	return returnlist
 }

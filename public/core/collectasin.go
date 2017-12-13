@@ -17,7 +17,7 @@
 package core
 
 import (
-	"github.com/hunterhug/GoTool/util"
+	"github.com/hunterhug/parrot/util"
 	"strings"
 )
 

@@ -19,8 +19,8 @@ package core
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/hunterhug/GoSpider/spider"
-	"github.com/hunterhug/GoTool/util"
+	spider "github.com/hunterhug/marmot/miner"
+	"github.com/hunterhug/parrot/util"
 	"io"
 	"net/http"
 	"os"

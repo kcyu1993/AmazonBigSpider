@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoTool/util"
+	"github.com/hunterhug/parrot/util"
 	"strings"
 )
 

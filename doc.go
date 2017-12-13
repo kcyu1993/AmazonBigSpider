@@ -19,13 +19,15 @@ package AmazonBigSpider
 import (
 	"flag"
 	"fmt"
-	"github.com/hunterhug/GoTool/util"
+
+	"github.com/hunterhug/parrot/util"
 	// 为了依赖
-	_ "github.com/hunterhug/GoSpider/query"
-	_ "github.com/hunterhug/GoSpider/spider"
-	_ "github.com/hunterhug/GoTool/store/myredis"
-	_ "github.com/hunterhug/GoTool/store/mysql"
 	"path/filepath"
+
+	_ "github.com/hunterhug/marmot/expert"
+	_ "github.com/hunterhug/marmot/miner"
+	_ "github.com/hunterhug/parrot/store/myredis"
+	_ "github.com/hunterhug/parrot/store/mysql"
 )
 
 var Dir = util.CurDir()

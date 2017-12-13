@@ -18,12 +18,13 @@ package main
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoTool/util"
-	"strings"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 )
 
 var urlchan chan string
@@ -168,7 +169,7 @@ func Good(level int) {
 }
 
 func robot(b []byte) bool {
-	doc, e := query.QueryBytes(b)
+	doc, e := expert.QueryBytes(b)
 	if e == nil {
 		if strings.Contains(doc.Find("title").Text(), "Robot Check") {
 			return true
@@ -276,7 +277,7 @@ func index() []string {
 			}
 			//zg_browseRoot
 			returnlist := []string{}
-			doc, _ := query.QueryBytes(bytescontents)
+			doc, _ := expert.QueryBytes(bytescontents)
 			root := doc.Find("#zg_browseRoot")
 			i := 1
 			root.Find("li").Each(func(num int, node *goquery.Selection) {
@@ -300,7 +301,7 @@ func index() []string {
 }
 
 func parseurl(pfilename string, bytescontents []byte, level int) []string {
-	doc, _ := query.QueryBytes(bytescontents)
+	doc, _ := expert.QueryBytes(bytescontents)
 	returnlist := []string{}
 	mark := "#zg_browseRoot"
 	for i := 0; i < level; i++ {

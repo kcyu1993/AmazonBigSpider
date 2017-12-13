@@ -18,8 +18,8 @@ package core
 
 import (
 	"fmt"
-	"github.com/hunterhug/GoSpider/spider"
-	"github.com/hunterhug/GoTool/util"
+	spider "github.com/hunterhug/marmot/miner"
+	"github.com/hunterhug/parrot/util"
 	"strings"
 )
 

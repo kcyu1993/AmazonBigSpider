@@ -19,10 +19,11 @@ package main
 // insert url into mysql
 import (
 	"fmt"
+	"strings"
+
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
-	"github.com/hunterhug/GoTool/util"
-	"strings"
+	"github.com/hunterhug/parrot/util"
 )
 
 func main() {

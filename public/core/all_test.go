@@ -18,9 +18,9 @@ package core
 
 import (
 	"fmt"
-	"github.com/hunterhug/GoSpider/spider"
-	"github.com/hunterhug/GoSpider/query"
-	"github.com/hunterhug/GoTool/util"
+	spider "github.com/hunterhug/marmot/miner"
+	"github.com/hunterhug/marmot/expert"
+	"github.com/hunterhug/parrot/util"
 	"regexp"
 	"testing"
 )
@@ -43,7 +43,7 @@ func TestListDownload1(t *testing.T) {
 func TestParseRank1(t *testing.T) {
 	bytecontent, _ := util.ReadfromFile(Dir + "/test/list/xxx2.html")
 	fmt.Printf("%#v\n", Urlmap)
-	doc, _ := query.QueryBytes(bytecontent)
+	doc, _ := expert.QueryBytes(bytecontent)
 	test := doc.Find("body").Text()
 	fmt.Printf("%#v\n", test)
 	r, _ := regexp.Compile(`#([,\d]{1,10})[\s]{0,1}[A-Za-z0-9]{0,6} in ([^#;)(\n]{2,30})[\s\n]{0,1}[(]{0,1}`)

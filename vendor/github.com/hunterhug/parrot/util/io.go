@@ -14,19 +14,25 @@
 
 	2017.7 by hunterhug
 */
-package log
+package util
 
-import "github.com/hunterhug/parrot/util"
+import (
+	"fmt"
+	"strings"
+)
 
-var AmazonListLog, AmazonAsinLog, AmazonIpLog *Logger
-
-func New(filename string) {
-	logsconf, _ := util.ReadfromFile(filename)
-	err := Init(string(logsconf))
-	if err != nil {
-		panic(err)
+func Input(say, defaults string) string {
+	fmt.Println(say)
+	var str string
+	fmt.Scanln(&str)
+	if strings.TrimSpace(str) == "" {
+		if strings.TrimSpace(defaults) != "" {
+			return defaults
+		} else {
+			fmt.Println("can not empty")
+			return Input(say, defaults)
+		}
 	}
-	AmazonListLog = Get("daylist")
-	AmazonAsinLog = Get("dayasin")
-	AmazonIpLog = Get("dayip")
+	//fmt.Println("--" + str + "--")
+	return str
 }
